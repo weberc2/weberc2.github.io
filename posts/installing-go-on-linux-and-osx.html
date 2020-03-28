@@ -1,0 +1,168 @@
+
+<html>
+
+<head>
+    <meta name=viewport content='width=350'>
+    <meta name="google-site-verification" content="cw0Nbm73FcLB9kSYvCUhc5q-6CrLFcgJQy0h_qzG0O8" />
+    <link href='https://fonts.googleapis.com/css?family=Neuton|Merriweather|Inconsolata:400,700' rel='stylesheet'
+        type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://weberc2.bitbucket.io/resources/style.css" />
+    
+<title>Installing Go on Linux &amp; OS X</title>
+
+</head>
+
+<body>
+    <script src="https://weberc2.bitbucket.io/livereload.js"></script>
+    <h1 id="site-header">
+        <a id="site-title" href="https://weberc2.bitbucket.io/index.html">
+            Craig Weber
+        </a>
+    </h1>
+    <div id="page" class="center-column">
+        
+<div id="post">
+    <h2 id="post-title">Installing Go on Linux &amp; OS X</h2>
+    <div><span class="post-date">2016-01-19</span></div>
+    <div class="post-body">
+        
+        <p>This is a guide for Unix systems (OS X and Linux), but Windows users shouldn&rsquo;t
+find it too difficult to figure out the equivalent commands for their platform.
+I&rsquo;m not assuming much prior knowledge, but readers should at least be
+comfortable navigating around a Unix terminal, and any familiarity with
+environment variables is helpful (a quick Google search for &ldquo;environment
+variables&rdquo; should suffice). Without further ado:</p>
+
+<!-- more -->
+
+<ol>
+<li><p><a href="https://golang.org/dl/">Download Go</a></p></li>
+
+<li><p>If you&rsquo;re on Linux, you&rsquo;ll need to pick an extraction location (the OS X
+installer should handle this part of the setup automatically). I usually
+install to <code>~/.go</code>, but it doesn&rsquo;t matter much. From your terminal, run:</p>
+<pre style="background-color:#f0f0f0">tar -xvf ~/Downloads/go1.5.3.linux-amd64.tar.gz
+mv go ~/.go
+</pre>
+<p>You&rsquo;ll also need to add <code>.go/bin</code> to your <code>$PATH</code> environment variable so you
+can run the go tool by its name (e.g., <code>go build</code> vs <code>~/.go/bin/go build</code>). Add
+this to the bottom of your <code>~/.bashrc</code> (this file sets up your terminal every
+time you log in):</p>
+<pre style="background-color:#f0f0f0"><span style="color:#60a0b0;font-style:italic"># Add Go to your path
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#bb60d5">PATH</span><span style="color:#666">=</span><span style="color:#bb60d5">$PATH</span>:<span style="color:#bb60d5">$HOME</span>/.go/bin
+<span style="color:#007020">export</span> <span style="color:#bb60d5">$PATH</span>
+</pre>
+<p>To load those changes into your shell without having to log out and log
+back in, you can run: <code>source ~/.bashrc</code>. You should now be able to run
+<code>go version</code> and see something like: <code>go version go1.5.3 linux/amd64</code>.</p></li>
+
+<li><p>Setup your <code>$GOPATH</code>. <code>$GOPATH</code> is a colon-delineated list of &ldquo;workspace&rdquo;
+directory paths. A workspace must have a <code>./src/</code> subdirectory. When the Go
+compiler encounters an import path in a source file, it will iterate over
+each workspace until it finds one that has the import path in its <code>src</code>
+subdirectory. I recommend keeping a single path in your <code>$GOPATH</code> for
+simplicity. Windows users will have to Google for &ldquo;how to set environment
+variables&rdquo; to follow along with this article. For OS X and Linux users, add
+the following to your <code>~/.bashrc</code> (Linux) or <code>~/.bash_profile</code> (OS X):</p>
+<pre style="background-color:#f0f0f0"><span style="color:#60a0b0;font-style:italic"># Setup $GOPATH
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#bb60d5">GOPATH</span><span style="color:#666">=</span><span style="color:#bb60d5">$HOME</span>/Projects
+<span style="color:#007020">export</span> GOPATH
+
+<span style="color:#60a0b0;font-style:italic"># When a go program is built, it will be added to $GOPATH/bin. In order to
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic"># run these programs by name, we need to add them to $PATH:
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#bb60d5">PATH</span><span style="color:#666">=</span><span style="color:#bb60d5">$PATH</span>:<span style="color:#bb60d5">$GOPATH</span>/bin
+<span style="color:#007020">export</span> PATH
+</pre>
+<p>Load those changes into your shell via <code>source ~/.bashrc</code> or <code>source
+~/.bash_profile</code>, then create the directory: <code>mkdir -p ~/Projects/src</code>.</p></li>
+
+<li><p>Test our setup with a &ldquo;hello world&rdquo; project. Make a directory for your
+project: <code>mkdir ~/Projects/src/hello</code>, then copy the following into
+<code>~/Projects/src/hello/main.go</code>:</p>
+<pre style="background-color:#f0f0f0"><span style="color:#007020;font-weight:bold">package</span> main
+
+
+<span style="color:#007020;font-weight:bold">import</span> <span style="color:#4070a0">&#34;fmt&#34;</span>
+
+
+<span style="color:#007020;font-weight:bold">func</span> main() {
+	fmt.Println(<span style="color:#4070a0">&#34;Hello, world!&#34;</span>)
+}
+</pre>
+<p>Install it via <code>go install hello</code>, and run it by invoking <code>hello</code>. If you
+don&rsquo;t see <code>Hello, world!</code>, then something bad happened.</p></li>
+</ol>
+
+    </div>
+
+    
+    <script>
+        talkyardServerUrl = 'https://comments-for-weberc2-bitbucket-io.talkyard.net';
+    </script>
+    <script async defer src="https://c1.ty-cdn.net/-/talkyard-comments.min.js"></script>
+    
+    <div class="talkyard-comments" data-discussion-id="" style="margin-top: 45px;">
+        <noscript>Please enable Javascript to view comments.</noscript>
+        <p style="margin-top: 25px; opacity: 0.9; font-size: 96%">
+            Comments powered by
+            <a href="https://www.talkyard.io">Talkyard</a>.
+        </p>
+    </div>
+    
+
+</div>
+
+        <div id="pagination">
+            
+            <div class="pagination" id="pagination-prev">
+                <a href="https://weberc2.bitbucket.io/posts/benchmarking-go-and-python.html">&laquo;&nbsp;Previous</a>
+            </div>
+            
+            
+            <div class="pagination" id="pagination-next">
+                <a href="https://weberc2.bitbucket.io/posts/software-architecture-best-practices.html">Next&nbsp;&raquo;</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer-content" class="center-column">
+            <div class="footer-section">
+                <h4>About</h4>
+                <p>Software enthusiast. Amateur blogger. I build things at
+                    <a href="https://narrativescience.com">
+                        Narrative Science.
+                    </a> Thoughts and opinions are my own.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    
+                    <li>
+                        <a href="http://twitter.com/weberc2">
+                            Twitter
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://github.com/weberc2">
+                            Github
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            
+            <div class="footer-section">
+                <h4>Copyright</h4>
+                Craig Weber 2016
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+</html>

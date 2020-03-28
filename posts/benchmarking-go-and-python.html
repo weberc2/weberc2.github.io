@@ -1,0 +1,272 @@
+
+<html>
+
+<head>
+    <meta name=viewport content='width=350'>
+    <meta name="google-site-verification" content="cw0Nbm73FcLB9kSYvCUhc5q-6CrLFcgJQy0h_qzG0O8" />
+    <link href='https://fonts.googleapis.com/css?family=Neuton|Merriweather|Inconsolata:400,700' rel='stylesheet'
+        type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://weberc2.bitbucket.io/resources/style.css" />
+    
+<title>Benchmarking Go and Python</title>
+
+</head>
+
+<body>
+    <script src="https://weberc2.bitbucket.io/livereload.js"></script>
+    <h1 id="site-header">
+        <a id="site-title" href="https://weberc2.bitbucket.io/index.html">
+            Craig Weber
+        </a>
+    </h1>
+    <div id="page" class="center-column">
+        
+<div id="post">
+    <h2 id="post-title">Benchmarking Go and Python</h2>
+    <div><span class="post-date">2016-02-06</span></div>
+    <div class="post-body">
+        
+        <p>Sometimes I&rsquo;m curious about the performance of different languages. At work, I
+usually write Python, but I often find tasks that are inherently parallelizable
+and could thus benefit from parallel execution. Unfortunately, Python is
+notoriously difficult to parallelize<sup class="footnote-ref" id="fnref:posts/benchmarking-go-and-python.htmla"><a rel="footnote" href="#fn:posts/benchmarking-go-and-python.htmla">1</a></sup>. In one case, we needed to validate
+that a table of values of a particular type could be convertible into a values
+of a different type based on some known set of conversion rules. Since Go is a
+great language for writing concurrent programs (and executing them in
+parallel), I decided to compare a sequential Python implementation to
+sequential and parallel Go implementations.</p>
+
+<!-- more -->
+
+<p>To simplify the problem for benchmarking, I decided to constrain the input type
+to strings and the output type to integers, and the &ldquo;conversion rule&rdquo; is
+<code>strconv.Atoi()</code> in Go and <code>int(string)</code> in Python. In all examples, I&rsquo;m
+reading comma-separated string values from stdin, building a 2D string array in
+memory, and then timing the conversion of strings to ints. I didn&rsquo;t want to
+include reading from stdin in my timing, because that would make my benchmarks
+dependent upon the performance of the data source (a network, the file system,
+etc). Reading from memory is much less variable.</p>
+
+<p>In Python, the code looks like this:</p>
+<pre style="background-color:#f0f0f0"><span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">validate_rows</span>(rows, col_size):
+    <span style="color:#007020;font-weight:bold">for</span> row_id, row <span style="color:#007020;font-weight:bold">in</span> <span style="color:#007020">enumerate</span>(rows):
+        <span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020">len</span>(row) <span style="color:#666">!=</span> col_size:
+            msg <span style="color:#666">=</span> <span style="color:#4070a0"></span><span style="color:#4070a0">&#34;</span><span style="color:#4070a0">Row {} has {} cells, but expected {}</span><span style="color:#4070a0;font-weight:bold">\n</span><span style="color:#4070a0">&#34;</span>
+            <span style="color:#007020;font-weight:bold">print</span>(msg<span style="color:#666">.</span>format(row_id, <span style="color:#007020">len</span>(row), col_size))
+            <span style="color:#007020;font-weight:bold">continue</span>
+        <span style="color:#007020;font-weight:bold">for</span> col_id, cell <span style="color:#007020;font-weight:bold">in</span> <span style="color:#007020">enumerate</span>(row):
+            <span style="color:#007020;font-weight:bold">try</span>:
+                <span style="color:#007020">int</span>(cell)
+            <span style="color:#007020;font-weight:bold">except</span> <span style="color:#007020">ValueError</span> <span style="color:#007020;font-weight:bold">as</span> e:
+                <span style="color:#007020;font-weight:bold">print</span>(<span style="color:#4070a0"></span><span style="color:#4070a0">&#34;</span><span style="color:#4070a0">Err at ({}, {}): {}</span><span style="color:#4070a0">&#34;</span><span style="color:#666">.</span>format(col_id, row_id, e))
+</pre>
+<p>And in Go:</p>
+<pre style="background-color:#f0f0f0"><span style="color:#007020;font-weight:bold">func</span> validateRows(rows [][]<span style="color:#902000">string</span>, colSize <span style="color:#902000">int</span>) {
+    <span style="color:#007020;font-weight:bold">for</span> rowID, row <span style="color:#666">:=</span> <span style="color:#007020;font-weight:bold">range</span> rows {
+        <span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020">len</span>(row) <span style="color:#666">!=</span> colSize {
+            msg <span style="color:#666">:=</span> <span style="color:#4070a0">&#34;Row %d has %d cells, but expected %d\n&#34;</span>
+            fmt.Fprintf(os.Stderr, msg, rowID, <span style="color:#007020">len</span>(row), colSize)
+            <span style="color:#007020;font-weight:bold">continue</span>
+        }
+        <span style="color:#007020;font-weight:bold">for</span> colID, cell <span style="color:#666">:=</span> <span style="color:#007020;font-weight:bold">range</span> row {
+            <span style="color:#007020;font-weight:bold">if</span> _, err <span style="color:#666">:=</span> strconv.Atoi(cell); err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+                msg <span style="color:#666">:=</span> <span style="color:#4070a0">&#34;Err at (%d, %d): %v\n&#34;</span>
+                fmt.Fprintf(os.Stderr, msg, colID, rowID, err)
+            }
+        }
+    }
+}
+</pre>
+<p>I also created a simple program that deterministically generates pseudo-random
+integer data in 2D CSV format and writes it to stdout:</p>
+<pre style="background-color:#f0f0f0">$ go run csvgen.go
+USAGE: csvgen &lt;col-count&gt; &lt;row-count&gt;
+</pre>
+<p>This lets me pipe data into the Go and Python versions, like so<sup class="footnote-ref" id="fnref:posts/benchmarking-go-and-python.htmlb"><a rel="footnote" href="#fn:posts/benchmarking-go-and-python.htmlb">2</a></sup>:</p>
+<pre style="background-color:#f0f0f0"><span style="color:#60a0b0;font-style:italic"># Sequential Python; 10,000 rows, 1,000 columns
+</span><span style="color:#60a0b0;font-style:italic"></span>$ go run csvgen.go <span style="color:#40a070">1000</span> <span style="color:#40a070">10000</span> | python3 sequential.py
+Beginning validation...
+Validated <span style="color:#40a070">10000</span> rows of <span style="color:#40a070">1000</span> cells in <span style="color:#40a070">0</span>:00:02.990360
+
+<span style="color:#60a0b0;font-style:italic"># Sequential Go; 10,000 rows, 1,000 columns
+</span><span style="color:#60a0b0;font-style:italic"></span>$ go run csvgen.go <span style="color:#40a070">1000</span> <span style="color:#40a070">10000</span> | go run sequential.go
+Beginning validation...
+Validated <span style="color:#40a070">10000</span> rows of <span style="color:#40a070">1000</span> cells in <span style="color:#40a070">664</span>.804988ms
+</pre>
+<p>The Go program was about 4.5 times faster than the Python program. Running this
+example over and over again on my MacBook Pro produces consistent results, with
+the Go program outperforming the Python variant by 4-6 times.</p>
+
+<p>But what about parallelism? I&rsquo;m not at all familiar with parallelism in Python,
+so I didn&rsquo;t attempt it (perhaps a reader could supply an implementation, and
+contact me on <a href="https://twitter.com/weberc2">Twitter</a>?), but Go makes parallelism very easy, so I decided
+to give it a shot:</p>
+<pre style="background-color:#f0f0f0"><span style="color:#007020;font-weight:bold">func</span> validateParallel(rows [][]<span style="color:#902000">string</span>, coreCount <span style="color:#902000">int</span>) {
+    wg <span style="color:#666">:=</span> sync.WaitGroup{}
+    wg.Add(coreCount) <span style="color:#60a0b0;font-style:italic">// Add `coreCount` goroutines to the WaitGroup
+</span><span style="color:#60a0b0;font-style:italic"></span>    
+    <span style="color:#60a0b0;font-style:italic">// divide `rows` into `coreCount` blocks of rows, and then dispatch a
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// goroutine to process each block.
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">for</span> _, block <span style="color:#666">:=</span> <span style="color:#007020;font-weight:bold">range</span> subslice(rows, coreCount) {
+        <span style="color:#60a0b0;font-style:italic">// Create a new variable exclusively for the goroutine that corresponds
+</span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#60a0b0;font-style:italic">// to this loop iteration. All goroutines can&#39;t share one variable,
+</span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#60a0b0;font-style:italic">// because the variable will be pointing to the last block returned by
+</span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#60a0b0;font-style:italic">// subslice() before the first goroutine is kicked off, meaning all
+</span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#60a0b0;font-style:italic">// goroutines would be operating on the last block and the previous
+</span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#60a0b0;font-style:italic">// blocks would be ignored.
+</span><span style="color:#60a0b0;font-style:italic"></span>        block <span style="color:#666">:=</span> block
+        
+        <span style="color:#007020;font-weight:bold">go</span> <span style="color:#007020;font-weight:bold">func</span>() {
+            validateRows(block, <span style="color:#007020">len</span>(rows[<span style="color:#40a070">0</span>]))
+            wg.Done() <span style="color:#60a0b0;font-style:italic">// signal that this goroutine has finished execution
+</span><span style="color:#60a0b0;font-style:italic"></span>        }()
+    }
+    
+    wg.Wait() <span style="color:#60a0b0;font-style:italic">// block until `wg.Done()` has been called `coreCount` times
+</span><span style="color:#60a0b0;font-style:italic"></span>}
+</pre>
+<p>This version takes a 2D input string array and breaks it into <code>coreCount</code>
+subarrays, where <code>coreCount</code> is intended to be the number of cores on the
+machine (although it can be any number between 1 and <code>len(rows)</code>). It then
+dispatches one goroutine (a lightweight, cooperative thread) per subarray,
+which invokes the <code>validateRows()</code> function from the sequential Go code snippet
+above. It also waits for each goroutine to finish before returning. Here&rsquo;s how
+the function is called (without timing or print statements):</p>
+<pre style="background-color:#f0f0f0">    <span style="color:#60a0b0;font-style:italic">// query the machine&#39;s CPU core count
+</span><span style="color:#60a0b0;font-style:italic"></span>    coreCount <span style="color:#666">:=</span> runtime.NumCPU()
+    
+    <span style="color:#60a0b0;font-style:italic">// allow the Go runtime to spin up (at most) `coreCount` threads
+</span><span style="color:#60a0b0;font-style:italic"></span>    runtime.GOMAXPROCS(coreCount)
+    
+    <span style="color:#60a0b0;font-style:italic">// pass the input rows and coreCount to validateParallel()
+</span><span style="color:#60a0b0;font-style:italic"></span>    validateParallel(rows, coreCount)
+</pre>
+<p>This version does about twice as well as the sequential Go algorithm for all
+inputs I tested:</p>
+<pre style="background-color:#f0f0f0">$ go run csvgen.go <span style="color:#40a070">1000</span> <span style="color:#40a070">10000</span> | go run parallel.go
+GOMAXPROCS: <span style="color:#40a070">4</span>
+Beginning validation...
+Validated <span style="color:#40a070">10000</span> rows of <span style="color:#40a070">1000</span> cells in <span style="color:#40a070">299</span>.069099ms
+</pre>
+<p>The performance ratio holds even if we bump up the input volume by an order of
+magnitude:</p>
+<pre style="background-color:#f0f0f0"><span style="color:#60a0b0;font-style:italic"># Sequential Python; 100,000 rows, 1,000 columns
+</span><span style="color:#60a0b0;font-style:italic"></span>$ csvgen <span style="color:#40a070">1000</span> <span style="color:#40a070">100000</span> | python3 sequential.py
+Beginning validation...
+Validated <span style="color:#40a070">100000</span> rows of <span style="color:#40a070">1000</span> cells in <span style="color:#40a070">0</span>:00:30.148827
+
+<span style="color:#60a0b0;font-style:italic"># Sequential Go; 100,000 rows, 1,000 columns
+</span><span style="color:#60a0b0;font-style:italic"></span>$ csvgen <span style="color:#40a070">1000</span> <span style="color:#40a070">100000</span> | go run sequential.go
+Beginning validation...
+Validated <span style="color:#40a070">100000</span> rows of <span style="color:#40a070">1000</span> cells in <span style="color:#40a070">6</span>.700995661s
+
+<span style="color:#60a0b0;font-style:italic"># Parallel Go; 100,000 rows, 1,000 columns
+</span><span style="color:#60a0b0;font-style:italic"></span>$ csvgen <span style="color:#40a070">1000</span> <span style="color:#40a070">100000</span> | go run parallel.go
+GOMAXPROCS: <span style="color:#40a070">4</span>
+Beginning validation...
+Validated <span style="color:#40a070">100000</span> rows of <span style="color:#40a070">1000</span> cells in <span style="color:#40a070">2</span>.985182403s
+</pre>
+<p>Besides performance, one of the nice things about the Go implementations is
+that they&rsquo;re not much less readable than the Python implementation. In fact,
+I&rsquo;ve found that the prevalence of types and the absence of features (no
+inheritance, decorators, exceptions, etc) make Go very quick to learn and easy
+to reason about.</p>
+
+<p>Feel free to try it yourself, or perhaps improve on my implementations. The
+source code for this case study can be found <a href="https://bitbucket.org/weberc2/csv-validation-benchmarks">here</a>. Share your results (or
+any other thoughts you had on this post) with me on <a href="https://twitter.com/weberc2">Twitter</a>.</p>
+
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:posts/benchmarking-go-and-python.htmla"><p>I got a lot of flack for this from a lot of Python folks who insisted
+that parallelism in Python was easy, but the fastest parallel Python
+implementation provided to me was still <em>twice as slow</em> as the <em>sequential
+Python implementation</em>. I&rsquo;ve updated my benchmark repo to include the 3
+parallel Python implementations.</p></li>
+
+<li id="fn:posts/benchmarking-go-and-python.htmlb"><p>Several folks were confused about whether or not the compilation of the
+Go programs (which take place during <code>go run</code>) were included in the
+benchmarks. They are not; the Go and Python programs are all responsible
+for timing themselves. This is because I wanted to be able to start time
+<em>after</em> each program had loaded its input data into a 2D-array in memory,
+so the I/O wasn&rsquo;t included in the benchmarks.</p></li>
+</ol>
+
+</div>
+
+    </div>
+
+    
+    <script>
+        talkyardServerUrl = 'https://comments-for-weberc2-bitbucket-io.talkyard.net';
+    </script>
+    <script async defer src="https://c1.ty-cdn.net/-/talkyard-comments.min.js"></script>
+    
+    <div class="talkyard-comments" data-discussion-id="" style="margin-top: 45px;">
+        <noscript>Please enable Javascript to view comments.</noscript>
+        <p style="margin-top: 25px; opacity: 0.9; font-size: 96%">
+            Comments powered by
+            <a href="https://www.talkyard.io">Talkyard</a>.
+        </p>
+    </div>
+    
+
+</div>
+
+        <div id="pagination">
+            
+            <div class="pagination" id="pagination-prev">
+                <a href="https://weberc2.bitbucket.io/posts/golang-interfaces-and-nil.html">&laquo;&nbsp;Previous</a>
+            </div>
+            
+            
+            <div class="pagination" id="pagination-next">
+                <a href="https://weberc2.bitbucket.io/posts/installing-go-on-linux-and-osx.html">Next&nbsp;&raquo;</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer-content" class="center-column">
+            <div class="footer-section">
+                <h4>About</h4>
+                <p>Software enthusiast. Amateur blogger. I build things at
+                    <a href="https://narrativescience.com">
+                        Narrative Science.
+                    </a> Thoughts and opinions are my own.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    
+                    <li>
+                        <a href="http://twitter.com/weberc2">
+                            Twitter
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://github.com/weberc2">
+                            Github
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            
+            <div class="footer-section">
+                <h4>Copyright</h4>
+                Craig Weber 2016
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+</html>
