@@ -8,24 +8,26 @@
         type='text/css'>
     <link rel="stylesheet" type="text/css" href="https://weberc2.github.io/resources/style.css" />
     <script>
-        const analyticsUrl = "https:\/\/1m5rr6060e.execute-api.us-east-1.amazonaws.com";
-        var body = document.getElementById("body");
-        var img = document.createElement("img");
-        var qstring = [
-            `path=${encodeURIComponent(window.location.pathname)}`,
-            `host=${encodeURIComponent(window.location.hostname)}`,
-            `proto=${encodeURIComponent(window.location.protocol)}`,
-            `referer=${encodeURIComponent(window.referer)}`,
-        ].join("&");
-        img.setAttribute("src", `${analyticsUrl}/?${qstring}`);
-        body.appendChild(img);
+        function submitAnalytics() {
+            const analyticsUrl = "https:\/\/1m5rr6060e.execute-api.us-east-1.amazonaws.com";
+            var body = document.getElementById("body");
+            var img = document.createElement("img");
+            var qstring = [
+                `path=${encodeURIComponent(window.location.pathname)}`,
+                `host=${encodeURIComponent(window.location.hostname)}`,
+                `proto=${encodeURIComponent(window.location.protocol)}`,
+                `referer=${encodeURIComponent(window.referer)}`,
+            ].join("&");
+            img.setAttribute("src", `${analyticsUrl}/?${qstring}`);
+            body.appendChild(img);
+        }
     </script>
     
 <title>Go&#39;s interfaces and nil by example</title>
 
 </head>
 
-<body>
+<body onload=submitAnalytics()>
     <script src="https://weberc2.github.io/livereload.js"></script>
     <h1 id="site-header">
         <a id="site-title" href="https://weberc2.github.io/index.html">
