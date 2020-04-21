@@ -7,6 +7,19 @@
     <link href='https://fonts.googleapis.com/css?family=Neuton|Merriweather|Inconsolata:400,700' rel='stylesheet'
         type='text/css'>
     <link rel="stylesheet" type="text/css" href="https://weberc2.github.io/resources/style.css" />
+    <script>
+        const analyticsUrl = "https:\/\/1m5rr6060e.execute-api.us-east-1.amazonaws.com";
+        var body = document.getElementById("body");
+        var img = document.createElement("img");
+        var qstring = [
+            `path=${encodeURIComponent(window.location.pathname)}`,
+            `host=${encodeURIComponent(window.location.hostname)}`,
+            `proto=${encodeURIComponent(window.location.protocol)}`,
+            `referer=${encodeURIComponent(window.referer)}`,
+        ].join("&");
+        img.setAttribute("src", `${analyticsUrl}/?${qstring}`);
+        body.appendChild(img);
+    </script>
     
 <title>Go&#39;s interfaces and nil by example</title>
 
