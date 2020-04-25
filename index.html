@@ -37,6 +37,35 @@
     <div id="post-list">
     
         <div id="post">
+            <h2 class="post-title"><a href="https://weberc2.github.io/posts/multiple-github-account-tips.html">Tips for working with multiple GitHub accounts</a></h2>
+            <div><span class="post-date">2020-04-25</span></div>
+            <div class="post-body">
+                
+                
+                
+                    <p>I use GitHub for my work and personal projects with different profiles for
+each. Because it&rsquo;s a good security/privacy practice, each profile has its
+own distinct SSH key. However, this causes problems because the <code>git</code> CLI
+will always try to use the first SSH key that maps to the <code>github.com</code>
+domain even if that key has no permissions for the target repository. The
+other more straightforward problem with multiple accounts is that the
+GitHub.com browser cookie asserts that you are only logged into one account
+at a time.</p>
+
+<p>My solutions for these problems are <a href="https://direnv.net/"><code>direnv</code></a> and <a href="https://support.mozilla.org/en-US/kb/containers">Firefox Containers</a>
+for each of these problems, respectively. These problems are straightforward
+applications of these technologies, so I&rsquo;m not claiming any innovation here,
+but rather it took me a long time to identify these solutions, and I hope this
+saves others some time. If you&rsquo;re not familiar with these tools, read on for
+details.</p>
+
+
+                    <a href="https://weberc2.github.io/posts/multiple-github-account-tips.html">Read more...</a>
+                
+            </div>
+        </div>
+    
+        <div id="post">
             <h2 class="post-title"><a href="https://weberc2.github.io/posts/5-myths-infra-as-code.html">5 myths about infrastructure-as-code via general purpose programming languages
 </a></h2>
             <div><span class="post-date">2020-04-15</span></div>
