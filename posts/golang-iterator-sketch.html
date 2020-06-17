@@ -1,0 +1,181 @@
+
+<html>
+
+<head>
+    <meta name=viewport content='width=350'>
+    <meta name="google-site-verification" content="cw0Nbm73FcLB9kSYvCUhc5q-6CrLFcgJQy0h_qzG0O8" />
+    <link href='https://fonts.googleapis.com/css?family=Neuton|Merriweather|Inconsolata:400,700' rel='stylesheet'
+        type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://weberc2.github.io/resources/style.css" />
+    <script>
+        function submitAnalytics() {
+            const analyticsUrl = "https:\/\/azd7mnx3pk.execute-api.us-east-2.amazonaws.com";
+            var body = document.getElementById("body");
+            var img = document.createElement("img");
+            var qstring = [
+                `path=${encodeURIComponent(window.location.pathname)}`,
+                `host=${encodeURIComponent(window.location.hostname)}`,
+                `proto=${encodeURIComponent(window.location.protocol)}`,
+                `referer=${encodeURIComponent(window.referer)}`,
+            ].join("&");
+            img.setAttribute("src", `${analyticsUrl}/?${qstring}`);
+            body.appendChild(img);
+        }
+    </script>
+    
+<title>Go generics iterator sketch</title>
+
+</head>
+
+<body onload=submitAnalytics()>
+    <script src="https://weberc2.github.io/livereload.js"></script>
+    <h1 id="site-header">
+        <a id="site-title" href="https://weberc2.github.io/index.html">
+            Craig Weber
+        </a>
+    </h1>
+    <div id="page" class="center-column">
+        
+<div id="post">
+    <h2 id="post-title">Go generics iterator sketch</h2>
+    <div><span class="post-date">2020-06-17</span></div>
+    <div class="post-body">
+        
+        <p>The new Go generics proposal and playground gives us something to play with.
+Here&rsquo;s a sketch of what a basic iterator library could look like. It&rsquo;s based on
+function types instead of interfaces; I think this gives better ergonomics than
+interface-based designs, especially if the proposal drops its seemingly
+arbitrary <a href="https://go.googlesource.com/proposal/+/refs/heads/master/design/go2draft-type-parameters.md#methods-may-not-take-additional-type-arguments">restrictions for method types</a>.</p>
+
+<p>I&rsquo;m not sure about returning a pointer to the type as opposed to a <code>(T, bool)</code>
+tuple. In particular, I suspect this will cause unnecessary allocations, but I
+haven&rsquo;t tested at all.</p>
+
+<p><a href="https://go2goplay.golang.org/p/WKouSq6mAh3">Playground</a></p>
+<pre style="background-color:#f0f0f0"><span style="color:#007020;font-weight:bold">package</span> main
+
+<span style="color:#007020;font-weight:bold">import</span> (
+	<span style="color:#4070a0">&#34;fmt&#34;</span>
+	<span style="color:#4070a0">&#34;strings&#34;</span>
+)
+
+<span style="color:#60a0b0;font-style:italic">// I made `Iter` a function type instead of an interface because I wanted to
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// hang methods off of it such as Iter.Map() and Iter.ForEach()--you can do
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// this for functions but strangely not for interfaces--however, this doesn&#39;t
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// work for methods like Iter.Map() because the proposal bizarrely prohibits
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// types not defined on the receiver type. Specifically, we can&#39;t specify the
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// output type for the map. So instead I made functions that take an iter and
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// return an iter. Not a huge loss, especially since Go doesn&#39;t support chained
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// methods (e.g., `iter.Map(...).Reduce(...)`) very well, esp wrt line
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// wrapping).
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> Iter(<span style="color:#007020;font-weight:bold">type</span> T) <span style="color:#007020;font-weight:bold">func</span>() <span style="color:#666">*</span>T
+
+<span style="color:#007020;font-weight:bold">func</span> next(<span style="color:#007020;font-weight:bold">type</span> I)(iter Iter(I)) <span style="color:#666">*</span>I { <span style="color:#007020;font-weight:bold">return</span> iter() }
+
+<span style="color:#007020;font-weight:bold">func</span> map_(<span style="color:#007020;font-weight:bold">type</span> I, O)(iter Iter(I), f <span style="color:#007020;font-weight:bold">func</span>(I) O) Iter(O) {
+	<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">func</span>() <span style="color:#666">*</span>O {
+		<span style="color:#007020;font-weight:bold">if</span> ptr <span style="color:#666">:=</span> next(iter); ptr <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+			o <span style="color:#666">:=</span> f(<span style="color:#666">*</span>ptr)
+			<span style="color:#007020;font-weight:bold">return</span> <span style="color:#666">&amp;</span>o
+		}
+		<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">nil</span>
+	}
+}
+
+<span style="color:#007020;font-weight:bold">func</span> forEach(<span style="color:#007020;font-weight:bold">type</span> I)(iter Iter(I), f <span style="color:#007020;font-weight:bold">func</span>(I)) {
+	<span style="color:#007020;font-weight:bold">for</span> ptr <span style="color:#666">:=</span> next(iter); ptr <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span>; ptr = next(iter) {
+		f(<span style="color:#666">*</span>ptr)
+	}
+}
+
+<span style="color:#007020;font-weight:bold">func</span> SliceIter(<span style="color:#007020;font-weight:bold">type</span> T)(slice []T) Iter(T) {
+	<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">func</span>() <span style="color:#666">*</span>T {
+		<span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020">len</span>(slice) &lt; <span style="color:#40a070">1</span> {
+			<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">nil</span>
+		}
+		tmp <span style="color:#666">:=</span> <span style="color:#666">&amp;</span>slice[<span style="color:#40a070">0</span>]
+		slice = slice[<span style="color:#40a070">1</span>:]
+		<span style="color:#007020;font-weight:bold">return</span> tmp
+	}
+}
+
+<span style="color:#007020;font-weight:bold">func</span> main() {
+	forEach(
+		map_(
+			SliceIter([]<span style="color:#902000">string</span>{<span style="color:#4070a0">&#34;hello&#34;</span>, <span style="color:#4070a0">&#34;der&#34;</span>}),
+			strings.ToUpper,
+		),
+		<span style="color:#007020;font-weight:bold">func</span>(s <span style="color:#902000">string</span>) { fmt.Println(s) },
+	)
+}
+
+</pre>
+    </div>
+
+    
+    <script>
+        talkyardServerUrl = 'https://comments-for-weberc2-bitbucket-io.talkyard.net';
+    </script>
+    <script async defer src="https://c1.ty-cdn.net/-/talkyard-comments.min.js"></script>
+    
+    <div class="talkyard-comments" data-discussion-id="" style="margin-top: 45px;">
+        <noscript>Please enable Javascript to view comments.</noscript>
+        <p style="margin-top: 25px; opacity: 0.9; font-size: 96%">
+            Comments powered by
+            <a href="https://www.talkyard.io">Talkyard</a>.
+        </p>
+    </div>
+    
+
+</div>
+
+        <div id="pagination">
+            
+            
+            <div class="pagination" id="pagination-next">
+                <a href="https://weberc2.github.io/posts/multiple-github-account-tips.html">Next&nbsp;&raquo;</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer-content" class="center-column">
+            <div class="footer-section">
+                <h4>About</h4>
+                <p>Software enthusiast. Amateur blogger. I build things at
+                    <a href="https://narrativescience.com">
+                        Narrative Science.
+                    </a> Thoughts and opinions are my own.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    
+                    <li>
+                        <a href="http://twitter.com/weberc2">
+                            Twitter
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://github.com/weberc2">
+                            Github
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            
+            <div class="footer-section">
+                <h4>Copyright</h4>
+                Craig Weber 2016
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+</html>
