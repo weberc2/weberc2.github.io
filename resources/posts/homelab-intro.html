@@ -1,0 +1,116 @@
+
+<html>
+
+<head>
+    <meta name=viewport content='width=350'>
+    <meta name="google-site-verification" content="cw0Nbm73FcLB9kSYvCUhc5q-6CrLFcgJQy0h_qzG0O8" />
+    <link href='https://fonts.googleapis.com/css?family=Neuton|Merriweather|Inconsolata:400,700' rel='stylesheet'
+        type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://weberc2.github.io/resources/style.css" />
+    <script>
+        function submitAnalytics() {
+            const analyticsUrl = "https:\/\/azd7mnx3pk.execute-api.us-east-2.amazonaws.com";
+            var body = document.getElementById("body");
+            var img = document.createElement("img");
+            var qstring = [
+                `path=${encodeURIComponent(window.location.pathname)}`,
+                `host=${encodeURIComponent(window.location.hostname)}`,
+                `proto=${encodeURIComponent(window.location.protocol)}`,
+                `referer=${encodeURIComponent(window.referer)}`,
+            ].join("&");
+            img.setAttribute("src", `${analyticsUrl}/?${qstring}`);
+            body.appendChild(img);
+        }
+    </script>
+    
+<title>Kubernetes &#43; Raspberry Pi Homelab: Introduction</title>
+
+</head>
+
+<body onload=submitAnalytics()>
+    <script src="https://weberc2.github.io/livereload.js"></script>
+    <h1 id="site-header">
+        <a id="site-title" href="https://weberc2.github.io/index.html">
+            Craig Weber
+        </a>
+    </h1>
+    <div id="page" class="center-column">
+        
+<div id="post">
+    <h2 id="post-title">Kubernetes &#43; Raspberry Pi Homelab: Introduction</h2>
+    <div><span class="post-date">2021-01-03</span></div>
+    <div class="post-body">
+        
+        <p>As I alluded to in my <a href="./k3s-tailscale.md">last post</a>, I&rsquo;ve finally decided to pull the trigger
+and build my own homelab: a personal computing environment for playing around
+with new tools and approaches for developing or operating software, including
+software that is personally useful.</p>
+
+<p>For my homelab, I want to build a Raspberry Pi Kubernetes cluster for hosting
+my own applications and experimenting with different tools and approaches for
+operating software. However, bare metal (i.e., not running on a public cloud
+provider, such as AWS) is a second-class citizen for Kubernetes, so one must
+bring their own providers for storage, networking, load balancing, ingress
+(roughly &ldquo;HTTP/layer-7 routing&rdquo;), and much more.</p>
+
+<p>One day, I have no doubt that there will be Kubernetes distributions targeting
+bare metal which are mature, robust, and open source; in the meanwhile, this
+series will document my efforts to work around those limitations so that others
+can build their own personal cloud platform more easily (or at least know what
+they&rsquo;re considering getting into!).</p>
+
+<p>Next time, I&rsquo;ll delve into the hardware I&rsquo;m using for my cluster.</p>
+
+    </div>
+</div>
+
+        <div id="pagination">
+            
+            
+            <div class="pagination" id="pagination-next">
+                <a href="https://weberc2.github.io/posts/k3s-tailscale.html">Next&nbsp;&raquo;</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer-content" class="center-column">
+            <div class="footer-section">
+                <h4>About</h4>
+                <p>
+                    Software enthusiast. Amateur blogger. I build things at
+                    <a href="https://tempus.com">Tempus.</a> Thoughts and
+                    opinions are my own.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    
+                    <li>
+                        <a href="http://twitter.com/weberc2">
+                            Twitter
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://github.com/weberc2">
+                            Github
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            
+            <div class="footer-section">
+                <h4>Copyright</h4>
+                Craig Weber 2016
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+</html>
