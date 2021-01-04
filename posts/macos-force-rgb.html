@@ -38,7 +38,7 @@
         
 <div id="post">
     <h2 id="post-title">Force RGB-mode (fix pink tint) in macOS in 3 easy steps</h2>
-    <div><span class="post-date">2020-01-04</span></div>
+    <div><span class="post-date">2021-01-04</span></div>
     <div class="post-body">
         
         <p>For whatever reason, macOS Catalina and Big Sur were both tinting my external
@@ -47,7 +47,7 @@ notably that I needed to force RGB. MacOS&rsquo;s UI doesn&rsquo;t give the user
 ability to change the color mode directly, so you have to hack around the
 display profile files directly.</p>
 
-<p>[This post] and its comments from 2013 seem to be the authoritative guide on
+<p><a href="https://www.mathewinkson.com/2013/03/force-rgb-mode-in-mac-os-x-to-fix-the-picture-quality-of-an-external-monitor">This post</a> and its comments from 2013 seem to be the authoritative guide on
 forcing RGB mode; however, these steps (and the variations found in the
 comments) make you do a lot of things, including disabling the System Integrity
 Protection (basically the stuff that prevents even the super user from changing
@@ -55,7 +55,10 @@ certain files and directories), booting into recovery mode, changing boot files
 (which can put your system into a boot loop, as I discovered the hard way), and
 a number of other dangerous, arcane things.</p>
 
-<p>Fortunately, I found that it&rsquo;s quite a lot easier:</p>
+<p>Fortunately, I found that it&rsquo;s quite a lot safer and easier (tested on both
+Big Sur and Catalina on two distinct MacBook Pros):</p>
+
+<!-- more -->
 
 <ol>
 <li>From your home directory, run:</li>
@@ -84,13 +87,9 @@ directory: <code>sudo mv ~/DisplayVendorID-*
 
         <div id="pagination">
             
-            <div class="pagination" id="pagination-prev">
-                <a href="https://weberc2.github.io/posts/blog-infra-updates.html">&laquo;&nbsp;Previous</a>
-            </div>
-            
             
             <div class="pagination" id="pagination-next">
-                <a href="https://weberc2.github.io/posts/blog-infrastructure.html">Next&nbsp;&raquo;</a>
+                <a href="https://weberc2.github.io/posts/homelab-intro.html">Next&nbsp;&raquo;</a>
             </div>
             
         </div>
