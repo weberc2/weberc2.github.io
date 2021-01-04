@@ -61,17 +61,15 @@ Big Sur and Catalina on two distinct MacBook Pros):</p>
 <!-- more -->
 
 <ol>
-<li>From your home directory, run:</li>
-</ol>
-<pre style="background-color:#f0f0f0">   $ curl -LO https://gist.github.com/adaugherity/7435890/raw/3403436446665aec2b5cf423ea4a5af63125e5af/patch-edid.rb<span style="color:#4070a0">`</span>
-   $ chmod +x ~/patch-edid.rb
-   $ ./patch-edid.rb
+<li><p>From your home directory, run:</p>
+<pre style="background-color:#f0f0f0">$ curl -LO https://gist.github.com/adaugherity/7435890/raw/3403436446665aec2b5cf423ea4a5af63125e5af/patch-edid.rb<span style="color:#4070a0">`</span>
+$ chmod +x ~/patch-edid.rb
+$ ./patch-edid.rb
 </pre>
 <p>This will download and run the patch-edid.rb script that the various guides
-   around the Internet direct you towards. This script will create a directory
-   in your home folder that looks like <code>DisplayVendorID-172</code>.</p>
+around the Internet direct you towards. This script will create a directory
+in your home folder that looks like <code>DisplayVendorID-172</code>.</p></li>
 
-<ol>
 <li><p>Make the <code>Overrides</code> directory. By making this directory, we don&rsquo;t have to
 use the original Overrides directory which would require disabling SIP and
 other steps: <code>sudo mkdir -p
