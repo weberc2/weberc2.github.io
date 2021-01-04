@@ -37,6 +37,30 @@
     <div id="post-list">
     
         <div id="post">
+            <h2 class="post-title"><a href="https://weberc2.github.io/posts/golang-interfaces-and-nil.html">Go&#39;s interfaces and nil by example</a></h2>
+            <div><span class="post-date">2016-10-30</span></div>
+            <div class="post-body">
+                
+                
+                
+                    <p>I&rsquo;ve recently been involved in conversations with a few Go developers who have
+expressed frustration about Go&rsquo;s interfaces with respect to nil. It seems not
+everyone understands that interfaces are a reference type (like a pointer), and
+they can reference other reference types (i.e., pointers, maps, slices, etc).
+Because all reference types have a nil (zero) value, an interface can be nil
+or an interface can reference a nil pointer; people may fail to realize that
+the nility of the interface is independent from the nility of the thing it
+points to, and when we ask (for example) <code>if err != nil</code>, we&rsquo;re actually asking
+<em>is the interface nil?</em>, not <em>is the value behind the interface nil?</em>. Here are
+a few examples that will (<em>hopefully</em>) demonstrate this clearly:</p>
+
+
+                    <a href="https://weberc2.github.io/posts/golang-interfaces-and-nil.html">Read more...</a>
+                
+            </div>
+        </div>
+    
+        <div id="post">
             <h2 class="post-title"><a href="https://weberc2.github.io/posts/benchmarking-go-and-python.html">Benchmarking Go and Python</a></h2>
             <div><span class="post-date">2016-02-06</span></div>
             <div class="post-body">

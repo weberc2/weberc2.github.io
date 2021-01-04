@@ -184,6 +184,55 @@ cool so far. At some point I will write a dedicated post about it.</p>
         </div>
     
         <div id="post">
+            <h2 class="post-title"><a href="https://weberc2.github.io/posts/macos-big-sur-force-rgb.html">Force RGB-mode (fix pink tint) in macOS in 3 easy steps</a></h2>
+            <div><span class="post-date">2020-01-04</span></div>
+            <div class="post-body">
+                
+                
+                
+                    <p>For whatever reason, macOS Catalina and Big Sur were both tinting my external
+monitor pink. Some research indicated that it had to do with the color mode,
+notably that I needed to force RGB. MacOS&rsquo;s UI doesn&rsquo;t give the user the
+ability to change the color mode directly, so you have to hack around the
+display profile files directly.</p>
+
+<p>[This post] and its comments from 2013 seem to be the authoritative guide on
+forcing RGB mode; however, these steps (and the variations found in the
+comments) make you do a lot of things, including disabling the System Integrity
+Protection (basically the stuff that prevents even the super user from changing
+certain files and directories), booting into recovery mode, changing boot files
+(which can put your system into a boot loop, as I discovered the hard way), and
+a number of other dangerous, arcane things.</p>
+
+<p>Fortunately, I found that it&rsquo;s quite a lot easier:</p>
+
+<ol>
+<li>From your home directory, run:</li>
+</ol>
+<pre style="background-color:#f0f0f0">   $ curl -LO https://gist.github.com/adaugherity/7435890/raw/3403436446665aec2b5cf423ea4a5af63125e5af/patch-edid.rb<span style="color:#4070a0">`</span>
+   $ chmod +x ~/patch-edid.rb
+   $ ./patch-edid.rb
+</pre>
+<p>This will download and run the patch-edid.rb script that the various guides
+   around the Internet direct you towards. This script will create a directory
+   in your home folder that looks like <code>DisplayVendorID-172</code>.</p>
+
+<ol>
+<li><p>Make the <code>Overrides</code> directory. By making this directory, we don&rsquo;t have to
+use the original Overrides directory which would require disabling SIP and
+other steps: <code>sudo mkdir -p
+/Library/Displays/Contents/Resources/Overrides/</code>.</p></li>
+
+<li><p>Move the generated <code>DisplayVendorID-*</code> directory into the <code>Overrides</code>
+directory: <code>sudo mv ~/DisplayVendorID-*
+/Library/Displays/Contents/Resources/Overrides/</code></p></li>
+</ol>
+
+                
+            </div>
+        </div>
+    
+        <div id="post">
             <h2 class="post-title"><a href="https://weberc2.github.io/posts/blog-infrastructure.html">New blog infrastructure</a></h2>
             <div><span class="post-date">2019-04-06</span></div>
             <div class="post-body">
@@ -263,30 +312,6 @@ testing).</p>
 
 
                     <a href="https://weberc2.github.io/posts/go-getting-started.html">Read more...</a>
-                
-            </div>
-        </div>
-    
-        <div id="post">
-            <h2 class="post-title"><a href="https://weberc2.github.io/posts/golang-interfaces-and-nil.html">Go&#39;s interfaces and nil by example</a></h2>
-            <div><span class="post-date">2016-10-30</span></div>
-            <div class="post-body">
-                
-                
-                
-                    <p>I&rsquo;ve recently been involved in conversations with a few Go developers who have
-expressed frustration about Go&rsquo;s interfaces with respect to nil. It seems not
-everyone understands that interfaces are a reference type (like a pointer), and
-they can reference other reference types (i.e., pointers, maps, slices, etc).
-Because all reference types have a nil (zero) value, an interface can be nil
-or an interface can reference a nil pointer; people may fail to realize that
-the nility of the interface is independent from the nility of the thing it
-points to, and when we ask (for example) <code>if err != nil</code>, we&rsquo;re actually asking
-<em>is the interface nil?</em>, not <em>is the value behind the interface nil?</em>. Here are
-a few examples that will (<em>hopefully</em>) demonstrate this clearly:</p>
-
-
-                    <a href="https://weberc2.github.io/posts/golang-interfaces-and-nil.html">Read more...</a>
                 
             </div>
         </div>
