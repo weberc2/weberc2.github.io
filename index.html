@@ -37,6 +37,27 @@
     <div id="post-list">
     
         <div id="post">
+            <h2 class="post-title"><a href="https://weberc2.github.io/posts/homelab-part-i-hardware.html">Homelab Part I: Hardware</a></h2>
+            <div><span class="post-date">2021-01-14</span></div>
+            <div class="post-body">
+                
+                
+                
+                    <p>For hardware, I settled on Raspberry Pi 4Bs. They support up to 8GB of RAM
+(enough power to run the k3s master nodes) and USB 3.0 for fast external SSD
+I/O. The only downside of the 4Bs is that they require more power than the 3Bs,
+and the same multiport USB power supplies that could support a 3B cluster
+couldn&rsquo;t support a 4B cluster. To solve for this, I decided on PoE hats and a
+PoE switch. This halves the number of cables that need to be run to each Pi,
+which makes the Pi cluster that much more enjoyable and easy on the eyes.</p>
+
+
+                    <a href="https://weberc2.github.io/posts/homelab-part-i-hardware.html">Read more...</a>
+                
+            </div>
+        </div>
+    
+        <div id="post">
             <h2 class="post-title"><a href="https://weberc2.github.io/posts/macos-force-rgb.html">Force RGB-mode (fix pink tint) in macOS in 3 easy steps</a></h2>
             <div><span class="post-date">2021-01-04</span></div>
             <div class="post-body">
@@ -73,7 +94,7 @@ Big Sur and Catalina on two distinct MacBook Pros):</p>
                 
                 
                 
-                    <p>As I alluded to in my <a href="./k3s-tailscale.md">last post</a>, I&rsquo;ve finally decided to pull the trigger
+                    <p>As I alluded to in my <a href="./k3s-tailscale.html">last post</a>, I&rsquo;ve finally decided to pull the trigger
 and build my own homelab: a personal computing environment for playing around
 with new tools and approaches for developing or operating software, including
 software that is personally useful.</p>
@@ -92,6 +113,10 @@ can build their own personal cloud platform more easily (or at least know what
 they&rsquo;re considering getting into!).</p>
 
 <p>Next time, I&rsquo;ll delve into the hardware I&rsquo;m using for my cluster.</p>
+
+<ul>
+<li><a href="./homelab-part-i-hardware.html">Part I: Hardware</a></li>
+</ul>
 
                 
             </div>
@@ -258,41 +283,6 @@ kernel (at least to the extent that containers provide isolation).</p>
 
 
                     <a href="https://weberc2.github.io/posts/golang-docker-scratch-app.html">Read more...</a>
-                
-            </div>
-        </div>
-    
-        <div id="post">
-            <h2 class="post-title"><a href="https://weberc2.github.io/posts/go-getting-started.html">Getting started with Go, 2018 edition</a></h2>
-            <div><span class="post-date">2018-10-14</span></div>
-            <div class="post-body">
-                
-                
-                
-                    <p>A little over 2.5 years ago, I wrote a tutorial about <a href="./installing-go-on-linux-and-osx.html">installing Go</a>. Since
-then, one of the more significant changes to the Go ecosystem has been the
-addition of <a href="https://github.com/golang/go/wiki/Modules">modules</a>, which effectively does away with the hardest part of
-installing Go&ndash;<code>$GOPATH</code>. This change occurred in the latest version: Go 1.11.</p>
-
-<p>In addition to installing Go, I wanted to make a guide that can get you from
-nothing to a real project in half an hour. Most languages focus their
-introductory material on the language and briefly cover setting up a toy
-program. When you&rsquo;re done, you realize you have no idea how to build a
-multi-file program, how to add dependencies (or at least how to add them in a
-way that won&rsquo;t break other things on your system), how to get an editor up
-and running, etc.</p>
-
-<p>I&rsquo;m not going to focus much at all on Go the language here, since it&rsquo;s super
-easy to learn and there are already many great tutorials (the official
-<a href="https://tour.golang.org">Tour</a> is probably not a bad place to start). I&rsquo;m only going to go deep
-enough to give you a lay of the land; if I&rsquo;ve done my job, it should be easy
-enough to Google for specific resources on any given topic (for example,
-testing).</p>
-
-<p>Now without further ado&hellip;</p>
-
-
-                    <a href="https://weberc2.github.io/posts/go-getting-started.html">Read more...</a>
                 
             </div>
         </div>
