@@ -1,0 +1,196 @@
+
+<html>
+
+<head>
+    <meta name=viewport content='width=device-width'>
+    <meta name="google-site-verification" content="cw0Nbm73FcLB9kSYvCUhc5q-6CrLFcgJQy0h_qzG0O8" />
+    <link href='https://fonts.googleapis.com/css?family=Neuton|Merriweather|Inconsolata:400,700' rel='stylesheet'
+        type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://weberc2.github.io/resources/style.css" />
+    <script>
+        function submitAnalytics() {
+            const analyticsUrl = "https:\/\/azd7mnx3pk.execute-api.us-east-2.amazonaws.com";
+            var body = document.getElementById("body");
+            var img = document.createElement("img");
+            var qstring = [
+                `path=${encodeURIComponent(window.location.pathname)}`,
+                `host=${encodeURIComponent(window.location.hostname)}`,
+                `proto=${encodeURIComponent(window.location.protocol)}`,
+                `referer=${encodeURIComponent(window.referer)}`,
+            ].join("&");
+            img.setAttribute("src", `${analyticsUrl}/?${qstring}`);
+            body.appendChild(img);
+        }
+    </script>
+    
+<title>Weekend Updates</title>
+
+</head>
+
+<body onload=submitAnalytics()>
+    <h1 id="site-header">
+        <a id="site-title" href="https://weberc2.github.io/index.html">
+            Craig Weber
+        </a>
+    </h1>
+    <div id="page" class="center-column">
+        
+<div id="post">
+    <h2 id="post-title">Weekend Updates</h2>
+    <div><span class="post-date">2021-01-16</span></div>
+    <div class="post-body">
+        
+        <p>I&rsquo;ve had an unusually productive last few days with respect to my hobby
+projects. Since Thursday evening, I published an initial draft of <a href="./homelab-part-i-hardware.html">Homelab Part
+I: Hardware</a>, did some more work on my Raspberry Pi cluster, added a
+syndication and markdown table support to my static site generator. Lastly, I
+found and fixed a viewport bug that was breaking making my blog&rsquo;s font size way
+too big for iPad-sized devices. I also managed to play too much Battlefield 1,
+but I&rsquo;ll stick with the technical details for now.</p>
+
+<!-- more -->
+
+<h3>iPad Viewport Bug</h3>
+
+<p>Jen got a new iPad this morning and over the course of playing around with it,
+I figured out that this blog looked really bad. The font-sizes were all ~3x too
+big. I&rsquo;m not really sure why it only affected iPad, but the jist is that when I
+was adding mobile support, I learned that I needed to add a <code>&lt;meta
+name=viewport ...&gt;</code> tag to my HTML pages or else a smartphone screen would just
+show a bunch of left-margin and the user would have to scroll to pan over the
+content. I didn&rsquo;t really understand it, but I figured out that
+<code>content=&quot;width=350&quot;</code> did the trick. After spending this morning hunting for
+the solution (not understanding at the time that this viewport thing was the
+culprit and chasing down several red herrings) it became apparent that I needed
+to set the width to a special <code>device-width</code> value. Now it looks great in iPad.</p>
+
+<h3>Syndication</h3>
+
+<p>I&rsquo;ve never been a big feeds guy personally, but I really like the idea of &ldquo;the
+old web&rdquo; and smaller-yet-still-open communities of bloggers. Atom/RSS feeds
+remind me of that time&ndash;even if they were never really pervasive, they fit the
+aesthetic. So I bought <a href="https://reederapp.com/">Reeder 5</a> for iOS and macOS (and probably for iPadOS
+in the coming days), added a couple of feeds, and &hellip; haven&rsquo;t really done
+anything with them yet. But I did update my static site generator, <code>neon</code> so it
+will automatically generate a <code>feed.atom</code> file at the root of the output
+directory, and I updated the &ldquo;Contact&rdquo; section of the blog footer to link to
+it.</p>
+
+<p>I&rsquo;ve been meaning to do this for years, but there hasn&rsquo;t been much point
+because I&rsquo;ve never really developed the habbit of writing regularly to this
+blog anyway. I also kind of figured it would be more difficult than it was to
+figure out how to fit this feature into the architecture of my static site
+generator, but it worked out elegantly enough that I was able to crank it out
+<a href="https://grammarist.com/idiom/from-soup-to-nuts/">soup-to-nuts</a> in just a few hours time (thanks largely to the excellent
+<a href="https://github.com/gorilla/feeds"><code>gorilla/feeds</code></a> package.</p>
+
+<h3>Markdown Table</h3>
+
+<p>For my <a href="./homelab-part-i-hardware.html">Homelab/Hardware post</a>, I wanted a table for my bill of materials.
+My static site generator uses another fantastic library, <a href="https://github.com/russross/blackfriday"><code>blackfriday</code></a>,
+for markdown support, and the library&rsquo;s extensibility is excellent and elegant.
+I didn&rsquo;t expect it would be hard to add tables, but I guess I forgot <em>exactly
+how easy</em> it was to extend:</p>
+<pre style="background-color:#f0f0f0">blackfriday.Run(
+    <span style="color:#60a0b0;font-style:italic">// ...
+</span><span style="color:#60a0b0;font-style:italic"></span>    blackfriday.WithExtensions(
+        blackfriday.CommonExtensions|
+            blackfriday.Footnotes|
+            blackfriday.Tables,
+    ),
+    <span style="color:#60a0b0;font-style:italic">// ...
+</span><span style="color:#60a0b0;font-style:italic"></span>)
+</pre>
+<p>With that done, I only had to style the tables in my theme&rsquo;s CSS file, and now
+I have tables that don&rsquo;t look half bad. This is a pretty small feature, but it
+brings me a lot of joy to see my home-grown tools evolve gradually over time.</p>
+
+<h3>Raspberry Pi Cluster update</h3>
+
+<p>I&rsquo;m presently working on the storage element of my cluster. I have a Pi that is
+connected to an SSD, and I configured the host-setup script to add the SSD to
+the /etc/fstab table (so the drive would auto-mount on boot). The goal is to
+expose the SSD to the whole cluster as an NFS volume driver or perhaps
+eventually as a <a href="https://longhorn.io">Longhorn.io</a> volume driver.</p>
+
+<p>Unfortunately, I was running into a networking issue that seems to have been
+<a href="https;//tailscale.io">Tailscale</a>-related (either a bug or a PEBAK; haven&rsquo;t root caused it yet).
+The issue was preventing all network egress outside of my LAN, including DNS
+resolution failures. I had to uninstall Tailscale and restart the application
+to get egress working on the node at all; I suspect the tailscale package
+configures some iptables or something, and uninstalling the package deletes the
+tailscale-related rules? The Tailscale team has always been super responsive to
+my issues even though I&rsquo;m not a paying customer, so I&rsquo;m confident I&rsquo;ll be able
+to get to the bottom of it when I have time to root-cause it.</p>
+
+<p>Thankfully, all I had to do was remove the tailscale bits from my host
+bootstrap scripts, reflash my SD cards, and rerun the scripts (and since I blew
+away my Kubernetes master as well, I also needed to re-apply my various
+manifests, but those are few and manageable by hand easily enough). These
+scripts make me really happy and I&rsquo;m glad I&rsquo;m investing in them early and
+often so I know I can always get my cluster back to a good state without having
+to plod through a bunch of uninteresting detail that I haven&rsquo;t thought about in
+months.</p>
+
+<h3>Tailscale SWAG Box</h3>
+
+<p>Lastly, I saw that Tailscale was giving out hoodies and other SWAG, so <a href="https://twitter.com/weberc2/status/1346578091536232453?s=20">I
+requested one via Twitter</a>. It finally arrived in the mail and fits great.
+Now it&rsquo;s in the daily
+trying-to-keep-our-heating-bill-low-and-save-the-planet-by-bundling-up
+hoodie/sweater rotation (at least until Jen pilfers it, as she&rsquo;s known to do).</p>
+
+    </div>
+</div>
+
+        <div id="pagination">
+            
+            
+            <div class="pagination" id="pagination-next">
+                <a href="https://weberc2.github.io/posts/homelab-part-i-hardware.html">Next&nbsp;&raquo;</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer-content" class="center-column">
+            <div class="footer-section">
+                <h4>About</h4>
+                <p>
+                    Software enthusiast. Amateur blogger. I build things at
+                    <a href="https://tempus.com">Tempus.</a> Thoughts and
+                    opinions are my own.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    
+                    <li>
+                        <a href="http://twitter.com/weberc2">
+                            Twitter
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://github.com/weberc2">
+                            Github
+                        </a>
+                    </li>
+                    
+                    <li><a href="https://weberc2.github.io/feed.atom">Atom Feed</a></li>
+                </ul>
+            </div>
+            
+            
+            <div class="footer-section">
+                <h4>Copyright</h4>
+                Craig Weber 2016
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+</html>

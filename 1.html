@@ -36,6 +36,36 @@
     <div id="post-list">
     
         <div id="post">
+            <h2 class="post-title"><a href="https://weberc2.github.io/posts/golang-docker-scratch-app.html">Deploying Go apps on Docker scratch images</a></h2>
+            <div><span class="post-date">2018-11-04</span></div>
+            <div class="post-body">
+                
+                
+                
+                    <p>NOTE: If you&rsquo;re here for the TL;DR, skip to the bottom.</p>
+
+<p>A few months ago I built out some monitoring infrastructure at work using Go. I
+deployed it to ECS (a Docker orchestrator, functionally similar to Kubernetes),
+and for fun I decided to see how minimal I could make the image. I&rsquo;ve used
+Alpine base images before (which weigh in at about 5 MB and usually another 5 MB
+for a small Go binary), but being that Go advertises itself as requiring only a
+Linux kernel (most programming languages depend on an interpreter, a VM, and/or
+system libraries&ndash;the latter abstract over kernel functionality and sometimes
+provide a stable interface to the kernel), I wanted to see how true or practical
+this was, and I wanted to better understand the things that I was taking for
+granted by using distros.</p>
+
+<p>As a matter of context, Docker has a special base image called <code>scratch</code> which
+is empty&ndash;an application running on a scratch base image only has access to the
+kernel (at least to the extent that containers provide isolation).</p>
+
+
+                    <a href="https://weberc2.github.io/posts/golang-docker-scratch-app.html">Read more...</a>
+                
+            </div>
+        </div>
+    
+        <div id="post">
             <h2 class="post-title"><a href="https://weberc2.github.io/posts/go-getting-started.html">Getting started with Go, 2018 edition</a></h2>
             <div><span class="post-date">2018-10-14</span></div>
             <div class="post-body">

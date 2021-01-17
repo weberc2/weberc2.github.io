@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Craig Weber</title>
   <id>https://weberc2.github.io</id>
-  <updated>2021-01-14T00:00:00Z</updated>
+  <updated>2021-01-16T00:00:00Z</updated>
   <subtitle>My blog; mostly tech</subtitle>
   <link href="https://weberc2.github.io"></link>
   <author>
     <name>Craig Weber</name>
   </author>
+  <entry>
+    <title>Weekend Updates</title>
+    <updated>2021-01-16T00:00:00Z</updated>
+    <id>tag:weberc2.github.io,2021-01-16:/posts/weekend-updates.html</id>
+    <link href="https://weberc2.github.io/posts/weekend-updates.html" rel="alternate"></link>
+    <summary type="html">&#xA;I&#39;ve had an unusually productive last few days with respect to my hobby&#xA;projects. Since Thursday evening, I published an initial draft of [Homelab Part&#xA;I: Hardware][0], did some more work on my Raspberry Pi cluster, added a&#xA;syndication and markdown table support to my static site generator. Lastly, I&#xA;found and fixed a viewport bug that was breaking making my blog&#39;s font size way&#xA;too big for iPad-sized devices. I also managed to play too much Battlefield 1,&#xA;but I&#39;ll stick with the technical details for now.&#xA;&#xA;</summary>
+    <author>
+      <name>Craig Weber</name>
+    </author>
+  </entry>
   <entry>
     <title>Homelab Part I: Hardware</title>
     <updated>2021-01-14T00:00:00Z</updated>

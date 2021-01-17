@@ -36,6 +36,27 @@
     <div id="post-list">
     
         <div id="post">
+            <h2 class="post-title"><a href="https://weberc2.github.io/posts/weekend-updates.html">Weekend Updates</a></h2>
+            <div><span class="post-date">2021-01-16</span></div>
+            <div class="post-body">
+                
+                
+                
+                    <p>I&rsquo;ve had an unusually productive last few days with respect to my hobby
+projects. Since Thursday evening, I published an initial draft of <a href="./homelab-part-i-hardware.html">Homelab Part
+I: Hardware</a>, did some more work on my Raspberry Pi cluster, added a
+syndication and markdown table support to my static site generator. Lastly, I
+found and fixed a viewport bug that was breaking making my blog&rsquo;s font size way
+too big for iPad-sized devices. I also managed to play too much Battlefield 1,
+but I&rsquo;ll stick with the technical details for now.</p>
+
+
+                    <a href="https://weberc2.github.io/posts/weekend-updates.html">Read more...</a>
+                
+            </div>
+        </div>
+    
+        <div id="post">
             <h2 class="post-title"><a href="https://weberc2.github.io/posts/homelab-part-i-hardware.html">Homelab Part I: Hardware</a></h2>
             <div><span class="post-date">2021-01-14</span></div>
             <div class="post-body">
@@ -252,36 +273,6 @@ describe the setup in case it&rsquo;s helpful for anyone looking to do the same.
 
 
                     <a href="https://weberc2.github.io/posts/blog-infrastructure.html">Read more...</a>
-                
-            </div>
-        </div>
-    
-        <div id="post">
-            <h2 class="post-title"><a href="https://weberc2.github.io/posts/golang-docker-scratch-app.html">Deploying Go apps on Docker scratch images</a></h2>
-            <div><span class="post-date">2018-11-04</span></div>
-            <div class="post-body">
-                
-                
-                
-                    <p>NOTE: If you&rsquo;re here for the TL;DR, skip to the bottom.</p>
-
-<p>A few months ago I built out some monitoring infrastructure at work using Go. I
-deployed it to ECS (a Docker orchestrator, functionally similar to Kubernetes),
-and for fun I decided to see how minimal I could make the image. I&rsquo;ve used
-Alpine base images before (which weigh in at about 5 MB and usually another 5 MB
-for a small Go binary), but being that Go advertises itself as requiring only a
-Linux kernel (most programming languages depend on an interpreter, a VM, and/or
-system libraries&ndash;the latter abstract over kernel functionality and sometimes
-provide a stable interface to the kernel), I wanted to see how true or practical
-this was, and I wanted to better understand the things that I was taking for
-granted by using distros.</p>
-
-<p>As a matter of context, Docker has a special base image called <code>scratch</code> which
-is empty&ndash;an application running on a scratch base image only has access to the
-kernel (at least to the extent that containers provide isolation).</p>
-
-
-                    <a href="https://weberc2.github.io/posts/golang-docker-scratch-app.html">Read more...</a>
                 
             </div>
         </div>
