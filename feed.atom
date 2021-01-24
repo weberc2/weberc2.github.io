@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Craig Weber</title>
   <id>https://weberc2.github.io</id>
-  <updated>2021-01-16T00:00:00Z</updated>
+  <updated>2021-01-23T00:00:00Z</updated>
   <subtitle>My blog; mostly tech</subtitle>
   <link href="https://weberc2.github.io"></link>
   <author>
     <name>Craig Weber</name>
   </author>
+  <entry>
+    <title>Working around ext4 on MacOS</title>
+    <updated>2021-01-23T00:00:00Z</updated>
+    <id>tag:weberc2.github.io,2021-01-23:/posts/working-around-ext4-on-macos.html</id>
+    <link href="https://weberc2.github.io/posts/working-around-ext4-on-macos.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;One of the maddening things about MacOS is that it lacks ext4 file system&#xA;support. This is a bummer because I use ext4 on many of my external hard&#xA;drives as well as boot volumes for various headless Linux machines. Once in a&#xA;while, these boot drives become corrupted (due to user error) and I find myself&#xA;wanting to mount the file system on another system to repair the error. Ideally&#xA;I can just pop it in a SATA&amp;lt;-&amp;gt;USB adapter and mount it on my Mac, but alas&amp;hellip;&lt;/p&gt;&#xA;&#xA;</summary>
+    <author>
+      <name>Craig Weber</name>
+    </author>
+  </entry>
   <entry>
     <title>Changelog</title>
     <updated>2021-01-16T00:00:00Z</updated>
