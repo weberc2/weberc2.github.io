@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Craig Weber</title>
-  <id>https://weberc2.github.io</id>
+  <id>http://localhost:8080</id>
   <updated>2021-01-23T00:00:00Z</updated>
   <subtitle>My blog; mostly tech</subtitle>
-  <link href="https://weberc2.github.io"></link>
+  <link href="http://localhost:8080"></link>
   <author>
     <name>Craig Weber</name>
   </author>
   <entry>
     <title>Working around ext4 on MacOS</title>
     <updated>2021-01-23T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2021-01-23:/posts/working-around-ext4-on-macos.html</id>
-    <link href="https://weberc2.github.io/posts/working-around-ext4-on-macos.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2021-01-23:/posts/working-around-ext4-on-macos.html</id>
+    <link href="http://localhost:8080/posts/working-around-ext4-on-macos.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;One of the maddening things about MacOS is that it lacks ext4 file system&#xA;support. This is a bummer because I use ext4 on many of my external hard&#xA;drives as well as boot volumes for various headless Linux machines. Once in a&#xA;while, these boot drives become corrupted (due to user error) and I find myself&#xA;wanting to mount the file system on another system to repair the error. Ideally&#xA;I can just pop it in a SATA&amp;lt;-&amp;gt;USB adapter and mount it on my Mac, but alas&amp;hellip;&lt;/p&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
@@ -20,9 +20,9 @@
   <entry>
     <title>Changelog</title>
     <updated>2021-01-16T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2021-01-16:/posts/changelog.html</id>
-    <link href="https://weberc2.github.io/posts/changelog.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;I worked on this blog for several hours this weekend, releasing a new post,&#xA;implementing a couple new features and fixing some bugs. Here are the&#xA;highlights:&lt;/p&gt;&#xA;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Published the &lt;a href=&#34;https://weberc2.github.io/posts/homelab-part-i-hardware.html&#34;&gt;first entry&lt;/a&gt; in my &lt;a href=&#34;https://weberc2.github.io/posts/homelab-intro.html&#34;&gt;Homelab&lt;/a&gt; series&lt;/li&gt;&#xA;&lt;li&gt;Fixed a bug on iPad that was causing a ~300% zoom&lt;/li&gt;&#xA;&lt;li&gt;Implemented syndication (atom feed)&lt;/li&gt;&#xA;&lt;li&gt;Fixed broken relative links in post snippets&lt;/li&gt;&#xA;&lt;li&gt;Reduced coupling between markdown and site configuration&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&#xA;</summary>
+    <id>tag:localhost:8080,2021-01-16:/posts/changelog.html</id>
+    <link href="http://localhost:8080/posts/changelog.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;I worked on this blog for several hours this weekend, releasing a new post,&#xA;implementing a couple new features and fixing some bugs. Here are the&#xA;highlights:&lt;/p&gt;&#xA;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Published the &lt;a href=&#34;http://localhost:8080/posts/homelab-part-i-hardware.html&#34;&gt;first entry&lt;/a&gt; in my &lt;a href=&#34;http://localhost:8080/posts/homelab-intro.html&#34;&gt;Homelab&lt;/a&gt; series&lt;/li&gt;&#xA;&lt;li&gt;Fixed a bug on iPad that was causing a ~300% zoom&lt;/li&gt;&#xA;&lt;li&gt;Implemented syndication (atom feed)&lt;/li&gt;&#xA;&lt;li&gt;Fixed broken relative links in post snippets&lt;/li&gt;&#xA;&lt;li&gt;Reduced coupling between markdown and site configuration&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
     </author>
@@ -30,8 +30,8 @@
   <entry>
     <title>Homelab Part I: Hardware</title>
     <updated>2021-01-14T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2021-01-14:/posts/homelab-part-i-hardware.html</id>
-    <link href="https://weberc2.github.io/posts/homelab-part-i-hardware.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2021-01-14:/posts/homelab-part-i-hardware.html</id>
+    <link href="http://localhost:8080/posts/homelab-part-i-hardware.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;For hardware, I settled on Raspberry Pi 4Bs. They support up to 8GB of RAM&#xA;(enough power to run the k3s master nodes) and USB 3.0 for fast external SSD&#xA;I/O. The only downside of the 4Bs is that they require more power than the 3Bs,&#xA;and the same multiport USB power supplies that could support a 3B cluster&#xA;couldn&amp;rsquo;t support a 4B cluster. To solve for this, I decided on PoE hats and a&#xA;PoE switch. This halves the number of cables that need to be run to each Pi,&#xA;which makes the Pi cluster that much more enjoyable and easy on the eyes.&lt;/p&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
@@ -40,8 +40,8 @@
   <entry>
     <title>Force RGB-mode (fix pink tint) in macOS in 3 easy steps</title>
     <updated>2021-01-04T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2021-01-04:/posts/macos-force-rgb.html</id>
-    <link href="https://weberc2.github.io/posts/macos-force-rgb.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2021-01-04:/posts/macos-force-rgb.html</id>
+    <link href="http://localhost:8080/posts/macos-force-rgb.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;For whatever reason, macOS Catalina and Big Sur were both tinting my external&#xA;monitor pink. Some research indicated that it had to do with the color mode,&#xA;notably that I needed to force RGB. MacOS&amp;rsquo;s UI doesn&amp;rsquo;t give the user the&#xA;ability to change the color mode directly, so you have to hack around the&#xA;display profile files directly.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.mathewinkson.com/2013/03/force-rgb-mode-in-mac-os-x-to-fix-the-picture-quality-of-an-external-monitor&#34;&gt;This post&lt;/a&gt; and its comments from 2013 seem to be the authoritative guide on&#xA;forcing RGB mode; however, these steps (and the variations found in the&#xA;comments) make you do a lot of things, including disabling the System Integrity&#xA;Protection (basically the stuff that prevents even the super user from changing&#xA;certain files and directories), booting into recovery mode, changing boot files&#xA;(which can put your system into a boot loop, as I discovered the hard way), and&#xA;a number of other dangerous, arcane things.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;Fortunately, I found a sequence that is much safer and easier (tested on both&#xA;Big Sur and Catalina on two distinct MacBook Pros):&lt;/p&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
@@ -50,9 +50,9 @@
   <entry>
     <title>Kubernetes + Raspberry Pi Homelab: Introduction</title>
     <updated>2021-01-03T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2021-01-03:/posts/homelab-intro.html</id>
-    <link href="https://weberc2.github.io/posts/homelab-intro.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;As I alluded to in my &lt;a href=&#34;https://weberc2.github.io/posts/k3s-tailscale.html&#34;&gt;last post&lt;/a&gt;, I&amp;rsquo;ve finally decided to pull the trigger&#xA;and build my own homelab: a personal computing environment for playing around&#xA;with new tools and approaches for developing or operating software, including&#xA;software that is personally useful.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;For my homelab, I want to build a Raspberry Pi Kubernetes cluster for hosting&#xA;my own applications and experimenting with different tools and approaches for&#xA;operating software. However, bare metal (i.e., not running on a public cloud&#xA;provider, such as AWS) is a second-class citizen for Kubernetes, so one must&#xA;bring their own providers for storage, networking, load balancing, ingress&#xA;(roughly &amp;ldquo;HTTP/layer-7 routing&amp;rdquo;), and much more.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;One day, I have no doubt that there will be Kubernetes distributions targeting&#xA;bare metal which are mature, robust, and open source; in the meanwhile, this&#xA;series will document my efforts to work around those limitations so that others&#xA;can build their own personal cloud platform more easily (or at least know what&#xA;they&amp;rsquo;re considering getting into!).&lt;/p&gt;&#xA;&#xA;&lt;p&gt;Next time, I&amp;rsquo;ll delve into the hardware I&amp;rsquo;m using for my cluster.&lt;/p&gt;&#xA;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://weberc2.github.io/posts/homelab-part-i-hardware.html&#34;&gt;Part I: Hardware&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;</summary>
+    <id>tag:localhost:8080,2021-01-03:/posts/homelab-intro.html</id>
+    <link href="http://localhost:8080/posts/homelab-intro.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;As I alluded to in my &lt;a href=&#34;http://localhost:8080/posts/k3s-tailscale.html&#34;&gt;last post&lt;/a&gt;, I&amp;rsquo;ve finally decided to pull the trigger&#xA;and build my own homelab: a personal computing environment for playing around&#xA;with new tools and approaches for developing or operating software, including&#xA;software that is personally useful.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;For my homelab, I want to build a Raspberry Pi Kubernetes cluster for hosting&#xA;my own applications and experimenting with different tools and approaches for&#xA;operating software. However, bare metal (i.e., not running on a public cloud&#xA;provider, such as AWS) is a second-class citizen for Kubernetes, so one must&#xA;bring their own providers for storage, networking, load balancing, ingress&#xA;(roughly &amp;ldquo;HTTP/layer-7 routing&amp;rdquo;), and much more.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;One day, I have no doubt that there will be Kubernetes distributions targeting&#xA;bare metal which are mature, robust, and open source; in the meanwhile, this&#xA;series will document my efforts to work around those limitations so that others&#xA;can build their own personal cloud platform more easily (or at least know what&#xA;they&amp;rsquo;re considering getting into!).&lt;/p&gt;&#xA;&#xA;&lt;p&gt;Next time, I&amp;rsquo;ll delve into the hardware I&amp;rsquo;m using for my cluster.&lt;/p&gt;&#xA;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:8080/posts/homelab-part-i-hardware.html&#34;&gt;Part I: Hardware&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
     </author>
@@ -60,8 +60,8 @@
   <entry>
     <title>K3s + Tailscale</title>
     <updated>2020-12-30T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2020-12-30:/posts/k3s-tailscale.html</id>
-    <link href="https://weberc2.github.io/posts/k3s-tailscale.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2020-12-30:/posts/k3s-tailscale.html</id>
+    <link href="http://localhost:8080/posts/k3s-tailscale.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;I&amp;rsquo;ve recently been working on my Raspberry Pi Kubernetes cluster. I also use&#xA;&lt;a href=&#34;https://tailscale.com/&#34;&gt;Tailscale&lt;/a&gt; for my home VPN (because it&amp;rsquo;s performant and absurdly easy to&#xA;setup and configure). I wanted to run Kubernetes services on my VPN using&#xA;private DNS names (e.g., &lt;code&gt;foo.local&lt;/code&gt;) and addresses from the Tailscale address&#xA;space (e.g., &lt;code&gt;100.*&lt;/code&gt;) as opposed to the host network address space (e.g.,&#xA;&lt;code&gt;192.168.*&lt;/code&gt;).&lt;/p&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
@@ -70,8 +70,8 @@
   <entry>
     <title>Go generics iterator sketch</title>
     <updated>2020-06-17T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2020-06-17:/posts/golang-iterator-sketch.html</id>
-    <link href="https://weberc2.github.io/posts/golang-iterator-sketch.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2020-06-17:/posts/golang-iterator-sketch.html</id>
+    <link href="http://localhost:8080/posts/golang-iterator-sketch.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;The new Go generics proposal and playground gives us something to play with.&#xA;Here&amp;rsquo;s a sketch of what a basic iterator library could look like. It&amp;rsquo;s based on&#xA;function types instead of interfaces; I think this gives better ergonomics than&#xA;interface-based designs, especially if the proposal drops its seemingly&#xA;arbitrary &lt;a href=&#34;https://go.googlesource.com/proposal/+/refs/heads/master/design/go2draft-type-parameters.md#methods-may-not-take-additional-type-arguments&#34;&gt;restrictions for method types&lt;/a&gt;.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;I&amp;rsquo;m not sure about returning a pointer to the type as opposed to a &lt;code&gt;(T, bool)&lt;/code&gt;&#xA;tuple. In particular, I suspect this will cause unnecessary allocations, but I&#xA;haven&amp;rsquo;t tested at all.&lt;/p&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
@@ -80,8 +80,8 @@
   <entry>
     <title>Tips for working with multiple GitHub accounts</title>
     <updated>2020-04-25T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2020-04-25:/posts/multiple-github-account-tips.html</id>
-    <link href="https://weberc2.github.io/posts/multiple-github-account-tips.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2020-04-25:/posts/multiple-github-account-tips.html</id>
+    <link href="http://localhost:8080/posts/multiple-github-account-tips.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;I use GitHub for my work and personal projects with different profiles for&#xA;each. Because it&amp;rsquo;s a good security/privacy practice, each profile has its&#xA;own distinct SSH key. However, this causes problems because the &lt;code&gt;git&lt;/code&gt; CLI&#xA;will always try to use the first SSH key that maps to the &lt;code&gt;github.com&lt;/code&gt;&#xA;domain even if that key has no permissions for the target repository. The&#xA;other more straightforward problem with multiple accounts is that the&#xA;GitHub.com browser cookie asserts that you are only logged into one account&#xA;at a time.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;My solutions for these problems are &lt;a href=&#34;https://direnv.net/&#34;&gt;&lt;code&gt;direnv&lt;/code&gt;&lt;/a&gt; and &lt;a href=&#34;https://support.mozilla.org/en-US/kb/containers&#34;&gt;Firefox&#xA;Containers&lt;/a&gt;, respectively. These use cases are straightforward&#xA;applications of these technologies, so I&amp;rsquo;m not claiming any innovation here,&#xA;but rather it took me a long time to identify these solutions, and I hope&#xA;this saves others some time. If you&amp;rsquo;re not familiar with these tools, read&#xA;on for details.&lt;/p&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
@@ -90,8 +90,8 @@
   <entry>
     <title>5 myths about infrastructure-as-code via general purpose programming languages&#xA;</title>
     <updated>2020-04-15T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2020-04-15:/posts/5-myths-infra-as-code.html</id>
-    <link href="https://weberc2.github.io/posts/5-myths-infra-as-code.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2020-04-15:/posts/5-myths-infra-as-code.html</id>
+    <link href="http://localhost:8080/posts/5-myths-infra-as-code.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;There&amp;rsquo;s an ongoing debate among infrastructure-as-code practitioners between&#xA;configuration languages like YAML and HCL and using &amp;ldquo;real programming&#xA;languages&amp;rdquo; (including domain specific programming languages) to generate&#xA;configuration. The debate is going very poorly because there is a lot&#xA;of confusion about the &amp;ldquo;real programming languages&amp;rdquo; position, so I want to&#xA;correct some of the common points of confusion (&amp;ldquo;myths&amp;rdquo;) so the conversation&#xA;can focus on more substantial concerns.&lt;/p&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
@@ -100,8 +100,8 @@
   <entry>
     <title>Blog infrastructure updates</title>
     <updated>2020-03-28T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2020-03-28:/posts/blog-infra-updates.html</id>
-    <link href="https://weberc2.github.io/posts/blog-infra-updates.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2020-03-28:/posts/blog-infra-updates.html</id>
+    <link href="http://localhost:8080/posts/blog-infra-updates.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;Another year, another blog update. BitBucket is deprecating their Mercurial&#xA;support, and while I really do appreciate Mercurial, it&amp;rsquo;s just easier for me to&#xA;keep everything in GitHub than trying to find another Mercurial provider. Also,&#xA;GitHub seems to be improving at a pretty rapid pace. So voila, this blog is now&#xA;hosted on GitHub. This includes my pet static site generator, &lt;a href=&#34;https://github.com/weberc2/neon&#34;&gt;&lt;code&gt;neon&lt;/code&gt;&lt;/a&gt; which&#xA;is used to generate this site.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;Further, my pet build tool &lt;a href=&#34;https://github.com/weberc2/builder&#34;&gt;&lt;code&gt;builder&lt;/code&gt;&lt;/a&gt; is sufficiently far along that I&#xA;can use it to automate the building of this static site. &lt;code&gt;builder&lt;/code&gt; is pretty&#xA;cool so far. At some point I will write a dedicated post about it.&lt;/p&gt;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
@@ -110,8 +110,8 @@
   <entry>
     <title>New blog infrastructure</title>
     <updated>2019-04-06T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2019-04-06:/posts/blog-infrastructure.html</id>
-    <link href="https://weberc2.github.io/posts/blog-infrastructure.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2019-04-06:/posts/blog-infrastructure.html</id>
+    <link href="http://localhost:8080/posts/blog-infrastructure.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;I &lt;em&gt;finally&lt;/em&gt; got around to automating the publishing of this blog. It hasn&amp;rsquo;t&#xA;been a high priority, since I only post a couple of times a year, but it&amp;rsquo;s&#xA;always bothered me that something that is such an ideal candidate for&#xA;automation hasn&amp;rsquo;t been automated. Anyway, I finally did it and I want to&#xA;describe the setup in case it&amp;rsquo;s helpful for anyone looking to do the same.&lt;/p&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
@@ -120,8 +120,8 @@
   <entry>
     <title>Deploying Go apps on Docker scratch images</title>
     <updated>2018-11-04T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2018-11-04:/posts/golang-docker-scratch-app.html</id>
-    <link href="https://weberc2.github.io/posts/golang-docker-scratch-app.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2018-11-04:/posts/golang-docker-scratch-app.html</id>
+    <link href="http://localhost:8080/posts/golang-docker-scratch-app.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;NOTE: If you&amp;rsquo;re here for the TL;DR, skip to the bottom.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;A few months ago I built out some monitoring infrastructure at work using Go. I&#xA;deployed it to ECS (a Docker orchestrator, functionally similar to Kubernetes),&#xA;and for fun I decided to see how minimal I could make the image. I&amp;rsquo;ve used&#xA;Alpine base images before (which weigh in at about 5 MB and usually another 5 MB&#xA;for a small Go binary), but being that Go advertises itself as requiring only a&#xA;Linux kernel (most programming languages depend on an interpreter, a VM, and/or&#xA;system libraries&amp;ndash;the latter abstract over kernel functionality and sometimes&#xA;provide a stable interface to the kernel), I wanted to see how true or practical&#xA;this was, and I wanted to better understand the things that I was taking for&#xA;granted by using distros.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;As a matter of context, Docker has a special base image called &lt;code&gt;scratch&lt;/code&gt; which&#xA;is empty&amp;ndash;an application running on a scratch base image only has access to the&#xA;kernel (at least to the extent that containers provide isolation).&lt;/p&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
@@ -130,9 +130,9 @@
   <entry>
     <title>Getting started with Go, 2018 edition</title>
     <updated>2018-10-14T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2018-10-14:/posts/go-getting-started.html</id>
-    <link href="https://weberc2.github.io/posts/go-getting-started.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;A little over 2.5 years ago, I wrote a tutorial about &lt;a href=&#34;https://weberc2.github.io/posts/installing-go-on-linux-and-osx.html&#34;&gt;installing Go&lt;/a&gt;. Since&#xA;then, one of the more significant changes to the Go ecosystem has been the&#xA;addition of &lt;a href=&#34;https://github.com/golang/go/wiki/Modules&#34;&gt;modules&lt;/a&gt;, which effectively does away with the hardest part of&#xA;installing Go&amp;ndash;&lt;code&gt;$GOPATH&lt;/code&gt;. This change occurred in the latest version: Go 1.11.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;In addition to installing Go, I wanted to make a guide that can get you from&#xA;nothing to a real project in half an hour. Most languages focus their&#xA;introductory material on the language and briefly cover setting up a toy&#xA;program. When you&amp;rsquo;re done, you realize you have no idea how to build a&#xA;multi-file program, how to add dependencies (or at least how to add them in a&#xA;way that won&amp;rsquo;t break other things on your system), how to get an editor up&#xA;and running, etc.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;I&amp;rsquo;m not going to focus much at all on Go the language here, since it&amp;rsquo;s super&#xA;easy to learn and there are already many great tutorials (the official&#xA;&lt;a href=&#34;https://tour.golang.org&#34;&gt;Tour&lt;/a&gt; is probably not a bad place to start). I&amp;rsquo;m only going to go deep&#xA;enough to give you a lay of the land; if I&amp;rsquo;ve done my job, it should be easy&#xA;enough to Google for specific resources on any given topic (for example,&#xA;testing).&lt;/p&gt;&#xA;&#xA;&lt;p&gt;Now without further ado&amp;hellip;&lt;/p&gt;&#xA;&#xA;</summary>
+    <id>tag:localhost:8080,2018-10-14:/posts/go-getting-started.html</id>
+    <link href="http://localhost:8080/posts/go-getting-started.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;A little over 2.5 years ago, I wrote a tutorial about &lt;a href=&#34;http://localhost:8080/posts/installing-go-on-linux-and-osx.html&#34;&gt;installing Go&lt;/a&gt;. Since&#xA;then, one of the more significant changes to the Go ecosystem has been the&#xA;addition of &lt;a href=&#34;https://github.com/golang/go/wiki/Modules&#34;&gt;modules&lt;/a&gt;, which effectively does away with the hardest part of&#xA;installing Go&amp;ndash;&lt;code&gt;$GOPATH&lt;/code&gt;. This change occurred in the latest version: Go 1.11.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;In addition to installing Go, I wanted to make a guide that can get you from&#xA;nothing to a real project in half an hour. Most languages focus their&#xA;introductory material on the language and briefly cover setting up a toy&#xA;program. When you&amp;rsquo;re done, you realize you have no idea how to build a&#xA;multi-file program, how to add dependencies (or at least how to add them in a&#xA;way that won&amp;rsquo;t break other things on your system), how to get an editor up&#xA;and running, etc.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;I&amp;rsquo;m not going to focus much at all on Go the language here, since it&amp;rsquo;s super&#xA;easy to learn and there are already many great tutorials (the official&#xA;&lt;a href=&#34;https://tour.golang.org&#34;&gt;Tour&lt;/a&gt; is probably not a bad place to start). I&amp;rsquo;m only going to go deep&#xA;enough to give you a lay of the land; if I&amp;rsquo;ve done my job, it should be easy&#xA;enough to Google for specific resources on any given topic (for example,&#xA;testing).&lt;/p&gt;&#xA;&#xA;&lt;p&gt;Now without further ado&amp;hellip;&lt;/p&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
     </author>
@@ -140,8 +140,8 @@
   <entry>
     <title>Go&#39;s interfaces and nil by example</title>
     <updated>2016-10-30T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2016-10-30:/posts/golang-interfaces-and-nil.html</id>
-    <link href="https://weberc2.github.io/posts/golang-interfaces-and-nil.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2016-10-30:/posts/golang-interfaces-and-nil.html</id>
+    <link href="http://localhost:8080/posts/golang-interfaces-and-nil.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;I&amp;rsquo;ve recently been involved in conversations with a few Go developers who have&#xA;expressed frustration about Go&amp;rsquo;s interfaces with respect to nil. It seems not&#xA;everyone understands that interfaces are a reference type (like a pointer), and&#xA;they can reference other reference types (i.e., pointers, maps, slices, etc).&#xA;Because all reference types have a nil (zero) value, an interface can be nil&#xA;or an interface can reference a nil pointer; people may fail to realize that&#xA;the nility of the interface is independent from the nility of the thing it&#xA;points to, and when we ask (for example) &lt;code&gt;if err != nil&lt;/code&gt;, we&amp;rsquo;re actually asking&#xA;&lt;em&gt;is the interface nil?&lt;/em&gt;, not &lt;em&gt;is the value behind the interface nil?&lt;/em&gt;. Here are&#xA;a few examples that will (&lt;em&gt;hopefully&lt;/em&gt;) demonstrate this clearly:&lt;/p&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
@@ -150,8 +150,8 @@
   <entry>
     <title>Benchmarking Go and Python</title>
     <updated>2016-02-06T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2016-02-06:/posts/benchmarking-go-and-python.html</id>
-    <link href="https://weberc2.github.io/posts/benchmarking-go-and-python.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2016-02-06:/posts/benchmarking-go-and-python.html</id>
+    <link href="http://localhost:8080/posts/benchmarking-go-and-python.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;Sometimes I&amp;rsquo;m curious about the performance of different languages. At work, I&#xA;usually write Python, but I often find tasks that are inherently parallelizable&#xA;and could thus benefit from parallel execution. Unfortunately, Python is&#xA;notoriously difficult to parallelize&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:posts/benchmarking-go-and-python.htmla&#34;&gt;&lt;a href=&#34;#fn:posts/benchmarking-go-and-python.htmla&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;. In one case, we needed to validate&#xA;that a table of values of a particular type could be convertible into a values&#xA;of a different type based on some known set of conversion rules. Since Go is a&#xA;great language for writing concurrent programs (and executing them in&#xA;parallel), I decided to compare a sequential Python implementation to&#xA;sequential and parallel Go implementations.&lt;/p&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
@@ -160,8 +160,8 @@
   <entry>
     <title>Installing Go on Linux &amp; OS X</title>
     <updated>2016-01-19T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2016-01-19:/posts/installing-go-on-linux-and-osx.html</id>
-    <link href="https://weberc2.github.io/posts/installing-go-on-linux-and-osx.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2016-01-19:/posts/installing-go-on-linux-and-osx.html</id>
+    <link href="http://localhost:8080/posts/installing-go-on-linux-and-osx.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;This is a guide for Unix systems (OS X and Linux), but Windows users shouldn&amp;rsquo;t&#xA;find it too difficult to figure out the equivalent commands for their platform.&#xA;I&amp;rsquo;m not assuming much prior knowledge, but readers should at least be&#xA;comfortable navigating around a Unix terminal, and any familiarity with&#xA;environment variables is helpful (a quick Google search for &amp;ldquo;environment&#xA;variables&amp;rdquo; should suffice). Without further ado:&lt;/p&gt;&#xA;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
@@ -170,8 +170,8 @@
   <entry>
     <title>Software architecture best practices</title>
     <updated>2015-09-30T00:00:00Z</updated>
-    <id>tag:weberc2.github.io,2015-09-30:/posts/software-architecture-best-practices.html</id>
-    <link href="https://weberc2.github.io/posts/software-architecture-best-practices.html" rel="alternate"></link>
+    <id>tag:localhost:8080,2015-09-30:/posts/software-architecture-best-practices.html</id>
+    <link href="http://localhost:8080/posts/software-architecture-best-practices.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;This is a collection of articles I&amp;rsquo;ve found about software development&#xA;best-practices. I intend to add to it over time, so don&amp;rsquo;t be surprised if it&#xA;changes.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;I&amp;rsquo;ve known about this blog post for a couple years, and I find myself frequently&#xA;referring people to it. It&amp;rsquo;s written by a Google engineer who does a much better&#xA;job of articulating good architecture techniques than I could. A must-read for&#xA;any software developer: &lt;a href=&#34;http://googletesting.blogspot.com/2008/08/by-miko-hevery-so-you-decided-to.html&#34;&gt;Writing Testable Code by Misko Hevery&lt;/a&gt;&lt;/p&gt;&#xA;&#xA;&lt;p&gt;This next post is something I just came across, but it does a really good job&#xA;explaining why writing testable code is not just about validating your code&amp;rsquo;s&#xA;functionality. Because it&amp;rsquo;s something I run into a lot in dynamic languages like&#xA;Python or Qt/C++, I would also add that hacky workarounds (like Python&amp;rsquo;s&#xA;&lt;code&gt;unittest.mock.patch()&lt;/code&gt;) exist that let you technically validate your code&#xA;without actually writing what is considered to be well-designed, testable code.&#xA;Without furhter ado: &lt;a href=&#34;http://openmymind.net/2010/8/17/Write-testable-code-even-if-you-dont-write-tests/&#34;&gt;Write testable code even if you don&amp;rsquo;t write tests&lt;/a&gt; by&#xA;Karl Seguin.&lt;/p&gt;&#xA;</summary>
     <author>
       <name>Craig Weber</name>
