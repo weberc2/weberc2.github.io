@@ -52,7 +52,7 @@ can focus on more substantial concerns.</p>
 
 <!-- more -->
 
-<h2>Disclaimer</h2>
+<h3 id="disclaimer">Disclaimer</h3>
 
 <p>These are all concerns I&rsquo;ve heard/read. They aren&rsquo;t strawman arguments, and
 anyway popular misconceptions among my &lsquo;opponents&rsquo; doesn&rsquo;t imply that their
@@ -63,9 +63,9 @@ configuration language camp believes any or all of these myths, and many
 people that I respect are in the configuration language camp (for now,
 anyway!).</p>
 
-<h2>Myths</h2>
+<h3 id="myths">Myths</h3>
 
-<h3>1. Using a programming language implies imperatively updating infrastructure</h3>
+<h4 id="1-using-a-programming-language-implies-imperatively-updating-infrastructure">1. Using a programming language implies imperatively updating infrastructure</h4>
 
 <p>Some people are concerned that an infinite loop in their program might spawn
 an infinite number of VMs or other resources. Others imagine that they will
@@ -78,7 +78,7 @@ that&ndash;you&rsquo;re generating the static configuration that is then fed int
 like Terraform or CloudFormation. The tools still do the hard part: figuring
 out what updates to apply, rollbacks, etc.</p>
 
-<h3>2. Using a programming language introduces unpredictability</h3>
+<h4 id="2-using-a-programming-language-introduces-unpredictability">2. Using a programming language introduces unpredictability</h4>
 
 <p>Some are worried that if they aren&rsquo;t reading and writing static configuration
 files and committing them to git, it will be opaque to them what changes will
@@ -90,7 +90,7 @@ just like if your team had written it directly, modulo perhaps comments, style,
 etc. Further, Terraform and CloudFormation also have the ability to preview
 changes before you apply them, and those same features are also available.</p>
 
-<h3>3. Using a programming language is incompatible with declarative infrastructure</h3>
+<h4 id="3-using-a-programming-language-is-incompatible-with-declarative-infrastructure">3. Using a programming language is incompatible with declarative infrastructure</h4>
 
 <p>I think this is just a misunderstanding of what &ldquo;declarative&rdquo; means. I think
 people initially confuse it with &ldquo;static&rdquo; or &ldquo;constant&rdquo; (as in &ldquo;it doesn&rsquo;t
@@ -168,7 +168,7 @@ t <span style="color:#666">=</span> Template(
 
 <span style="color:#007020;font-weight:bold">print</span>(yaml<span style="color:#666">.</span>dump(t<span style="color:#666">.</span>template_to_cloudformation()))
 </pre>
-<h3>4. Programming languages are necessarily turing complete (and that&rsquo;s a big problem)</h3>
+<h4 id="4-programming-languages-are-necessarily-turing-complete-and-that-s-a-big-problem">4. Programming languages are necessarily turing complete (and that&rsquo;s a big problem)</h4>
 
 <p>There&rsquo;s a potential semantic argument about whether or not &lsquo;programming
 language&rsquo; implies &lsquo;Turing completeness&rsquo;. Certainly most are, and I&rsquo;m happy to
@@ -199,7 +199,7 @@ in code review (and if your organization really can&rsquo;t be trusted to
 consistently avoid these bugs, then any embedded scripting language would
 suit, including Dhall and Starlark).</p>
 
-<h3>5. The principle of least power says that we should use configuration languages</h3>
+<h4 id="5-the-principle-of-least-power-says-that-we-should-use-configuration-languages">5. The principle of least power says that we should use configuration languages</h4>
 
 <p>The principle of least power states that we should aim for &ldquo;the least powerful
 language that is <em>suitable for the task</em>&rdquo; (emphasis mine) not the least

@@ -62,8 +62,8 @@ mv go ~/.go
 can run the go tool by its name (e.g., <code>go build</code> vs <code>~/.go/bin/go build</code>). Add
 this to the bottom of your <code>~/.bashrc</code> (this file sets up your terminal every
 time you log in):</p>
-<pre style="background-color:#f0f0f0"><span style="color:#60a0b0;font-style:italic"># Add Go to your path
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#bb60d5">PATH</span><span style="color:#666">=</span><span style="color:#bb60d5">$PATH</span>:<span style="color:#bb60d5">$HOME</span>/.go/bin
+<pre style="background-color:#f0f0f0"><span style="color:#60a0b0;font-style:italic"># Add Go to your path</span>
+<span style="color:#bb60d5">PATH</span><span style="color:#666">=</span><span style="color:#bb60d5">$PATH</span>:<span style="color:#bb60d5">$HOME</span>/.go/bin
 <span style="color:#007020">export</span> <span style="color:#bb60d5">$PATH</span>
 </pre>
 <p>To load those changes into your shell without having to log out and log
@@ -78,29 +78,24 @@ subdirectory. I recommend keeping a single path in your <code>$GOPATH</code> for
 simplicity. Windows users will have to Google for &ldquo;how to set environment
 variables&rdquo; to follow along with this article. For OS X and Linux users, add
 the following to your <code>~/.bashrc</code> (Linux) or <code>~/.bash_profile</code> (OS X):</p>
-<pre style="background-color:#f0f0f0"><span style="color:#60a0b0;font-style:italic"># Setup $GOPATH
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#bb60d5">GOPATH</span><span style="color:#666">=</span><span style="color:#bb60d5">$HOME</span>/Projects
+<pre style="background-color:#f0f0f0"><span style="color:#60a0b0;font-style:italic"># Setup $GOPATH</span>
+<span style="color:#bb60d5">GOPATH</span><span style="color:#666">=</span><span style="color:#bb60d5">$HOME</span>/Projects
 <span style="color:#007020">export</span> GOPATH
 
-<span style="color:#60a0b0;font-style:italic"># When a go program is built, it will be added to $GOPATH/bin. In order to
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic"># run these programs by name, we need to add them to $PATH:
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#bb60d5">PATH</span><span style="color:#666">=</span><span style="color:#bb60d5">$PATH</span>:<span style="color:#bb60d5">$GOPATH</span>/bin
+<span style="color:#60a0b0;font-style:italic"># When a go program is built, it will be added to $GOPATH/bin. In order to</span>
+<span style="color:#60a0b0;font-style:italic"># run these programs by name, we need to add them to $PATH:</span>
+<span style="color:#bb60d5">PATH</span><span style="color:#666">=</span><span style="color:#bb60d5">$PATH</span>:<span style="color:#bb60d5">$GOPATH</span>/bin
 <span style="color:#007020">export</span> PATH
 </pre>
 <p>Load those changes into your shell via <code>source ~/.bashrc</code> or <code>source
-~/.bash_profile</code>, then create the directory: <code>mkdir -p ~/Projects/src</code>.</p></li>
-
-<li><p>Test our setup with a &ldquo;hello world&rdquo; project. Make a directory for your
+~/.bash_profile</code>, then create the directory: <code>mkdir -p ~/Projects/src</code>.
+4. Test our setup with a &ldquo;hello world&rdquo; project. Make a directory for your
 project: <code>mkdir ~/Projects/src/hello</code>, then copy the following into
 <code>~/Projects/src/hello/main.go</code>:</p>
 <pre style="background-color:#f0f0f0"><span style="color:#007020;font-weight:bold">package</span> main
-
-
 <span style="color:#007020;font-weight:bold">import</span> <span style="color:#4070a0">&#34;fmt&#34;</span>
-
-
-<span style="color:#007020;font-weight:bold">func</span> main() {
-	fmt.Println(<span style="color:#4070a0">&#34;Hello, world!&#34;</span>)
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">main</span>() {
+	fmt.<span style="color:#06287e">Println</span>(<span style="color:#4070a0">&#34;Hello, world!&#34;</span>)
 }
 </pre>
 <p>Install it via <code>go install hello</code>, and run it by invoking <code>hello</code>. If you

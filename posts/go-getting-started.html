@@ -68,7 +68,7 @@ testing).</p>
 NOTE: headers start at h3 b/c h1 is for site header and h2 is for post title
 -->
 
-<h3>Installing Go</h3>
+<h3 id="installing-go">Installing Go</h3>
 
 <p>Here are the updated installation instructions:</p>
 
@@ -93,7 +93,7 @@ comparable.</p></li>
 
 <p>That&rsquo;s it. Now you can compile any Go program.</p>
 
-<h3>Text Editor</h3>
+<h3 id="text-editor">Text Editor</h3>
 
 <p>Go has the highest quality text editor plugins of any programming language I&rsquo;ve
 used. The plugins all have the features you would expect from an IDE&ndash;the
@@ -113,7 +113,7 @@ it&rsquo;s the easiest, most stable way to work with Go, especially if you&rsquo
 comfortable in a GUI environment (although this vim user has found himself
 using VS Code more and more lately).</p>
 
-<h3>Hello world</h3>
+<h3 id="hello-world">Hello world</h3>
 
 <p>Create a new project directory anywhere on your system, say <code>/tmp/hello</code>. Now
 copy and paste the following into <code>/tmp/hello/main.go</code>:</p>
@@ -121,7 +121,7 @@ copy and paste the following into <code>/tmp/hello/main.go</code>:</p>
 
 <span style="color:#007020;font-weight:bold">import</span> <span style="color:#4070a0">&#34;fmt&#34;</span>
 
-<span style="color:#007020;font-weight:bold">func</span> main() { fmt.Println(<span style="color:#4070a0">&#34;Hello, world&#34;</span>) }
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">main</span>() { fmt.<span style="color:#06287e">Println</span>(<span style="color:#4070a0">&#34;Hello, world&#34;</span>) }
 </pre>
 <p>This imports the <code>fmt</code> package from the standard library and uses it to print
 <code>Hello, world</code>. Now, in your <code>hello</code> directory, run <code>go run main.go</code> to run
@@ -140,7 +140,7 @@ didn&rsquo;t need to figure out how to point the compiler at your source files o
 tell the compiler the order in which it needs to process them. <code>go build</code> is
 sufficient to build most Go programs.</p>
 
-<h3>Dependencies</h3>
+<h3 id="dependencies">Dependencies</h3>
 
 <p>Dependency management is a critical function for writing software, yet most
 languages&rsquo; &ldquo;getting started&rdquo; guides don&rsquo;t guide you to the best practices if
@@ -178,11 +178,11 @@ dependencies to your system, and build the binary. Let&rsquo;s try it:</p>
 )
 
 
-<span style="color:#007020;font-weight:bold">func</span> main() {
-    color.Cyan(<span style="color:#4070a0">&#34;Hello, world!&#34;</span>)
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">main</span>() {
+    color.<span style="color:#06287e">Cyan</span>(<span style="color:#4070a0">&#34;Hello, world!&#34;</span>)
 }
-</pre></li>
-
+</pre>
+<ol>
 <li><p>Run <code>go build</code>, and observe it downloading your dependency (and its
 transitive dependencies):</p>
 <pre style="background-color:#f0f0f0">go: finding github.com/fatih/color v1.7.0
@@ -195,20 +195,18 @@ go: downloading github.com/mattn/go-colorable v0.0.9
 <p>You&rsquo;ll only see this output once since those dependencies get cached.
 Regardless of whether or not you&rsquo;ve run <code>go build</code> before, you should see a
 <code>hello</code> binary, just as before. Running it should produce the same output,
-but in cyan.</p>
-
-<p>Note that Go pulls dependencies directly from version control, and it uses
+but in cyan.
+Note that Go pulls dependencies directly from version control, and it uses
 Git, Subversion, and Mercurial to do this, so make sure you have those
-installed on your system.</p></li>
-</ol>
+installed on your system.</p>
 
-<h3>Publishing packages</h3>
+<h3 id="publishing-packages">Publishing packages</h3>
 
 <p>Go doesn&rsquo;t have a package repository; to &ldquo;publish&rdquo; packages, you just push your
 code up to Github or BitBucket or wherever (you can even run your own
 git/hg/svn server). No need to write CI scripts to publish packages for you.</p>
 
-<h3>Testing</h3>
+<h3 id="testing">Testing</h3>
 
 <p>Go has unit tests built in, so you don&rsquo;t need to worry about figuring out what
 unit test library or test runner to install nor how to run them. Just use the
@@ -217,20 +215,20 @@ files can live wherever you want them to, but its relatively common to put
 them alongside the source code. Test files are suffixed by <code>_test.go</code>, and are
 treated specially by the Go toolchain. Within a test file, functions that start
 with <code>Test</code> and take a single <code>*testing.T</code> argument (no returns) are executed
-as tests. That argument has methods attached to fail, skip, etc.</p>
-
-<p>Here&rsquo;s a quick toy example:</p>
+as tests. That argument has methods attached to fail, skip, etc.
+Here&rsquo;s a quick toy example:</p>
 <pre style="background-color:#f0f0f0"><span style="color:#007020;font-weight:bold">package</span> arithmetic
-
 <span style="color:#007020;font-weight:bold">import</span> <span style="color:#4070a0">&#34;testing&#34;</span>
-
-<span style="color:#007020;font-weight:bold">func</span> TestAdd(t <span style="color:#666">*</span>testing.T) {
-    <span style="color:#007020;font-weight:bold">if</span> result <span style="color:#666">:=</span> Add(<span style="color:#40a070">1</span>, <span style="color:#40a070">2</span>); result <span style="color:#666">!=</span> <span style="color:#40a070">3</span> {
-        t.Errorf(<span style="color:#4070a0">&#34;Wanted 3, got %d&#34;</span>, result)
-    }
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">TestAdd</span>(t <span style="color:#666">*</span>testing.T) {
+<span style="color:#007020;font-weight:bold">if</span> result <span style="color:#666">:=</span> <span style="color:#06287e">Add</span>(<span style="color:#40a070">1</span>, <span style="color:#40a070">2</span>); result <span style="color:#666">!=</span> <span style="color:#40a070">3</span> {
+t.<span style="color:#06287e">Errorf</span>(<span style="color:#4070a0">&#34;Wanted 3, got %d&#34;</span>, result)
 }
-</pre>
-<h3>Documentation</h3>
+}
+</pre></li>
+</ol></li>
+</ol>
+
+<h3 id="documentation">Documentation</h3>
 
 <p>Go doesn&rsquo;t require you to learn a special documentation syntax like javadoc or
 Sphinx; it just pulls documentation from your normal code comments. If you push
@@ -241,7 +239,7 @@ is also a subcommand on the <code>go</code> tool called <code>go doc</code> whic
 identifier (such as <code>fmt.Printf</code>) and returns the documentation associated with
 that symbol; check out <code>go help doc</code> for more details.</p>
 
-<h3>Other tools</h3>
+<h3 id="other-tools">Other tools</h3>
 
 <p>Go also has support for the following:</p>
 
@@ -255,12 +253,12 @@ that symbol; check out <code>go help doc</code> for more details.</p>
 
 <p>For a truly comprehensive list, check out <a href="https://github.com/avelino/awesome-go">Awesome Go</a></p>
 
-<h3>Contact</h3>
+<h3 id="contact">Contact</h3>
 
 <p>For questions, corrections, suggestions, or criticism, hit me up via <a href="mailto:weberc2@gmail.com">email</a>
 or <a href="https://twitter.com/weberc2">Twitter</a>.</p>
 
-<h3>Edit (2018-10-20)</h3>
+<h3 id="edit-2018-10-20">Edit (2018-10-20)</h3>
 
 <p>Updated according to some feedback.</p>
 

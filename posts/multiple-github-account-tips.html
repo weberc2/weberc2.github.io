@@ -60,7 +60,7 @@ on for details.</p>
 
 <!-- h3 because the site header is h1 and the post title is h2 -->
 
-<h3>Solution 1: Managing multiple GitHub SSH keys with <a href="https://direnv.net/"><code>direnv</code></a></h3>
+<h3 id="solution-1-managing-multiple-github-ssh-keys-with-direnv-0">Solution 1: Managing multiple GitHub SSH keys with <a href="https://direnv.net/"><code>direnv</code></a></h3>
 
 <p>The <code>git</code> CLI respects a <code>GIT_SSH_COMMAND</code> environment variable, and the <code>ssh</code>
 CLI takes a <code>-i</code> flag to specify an &ldquo;identity file&rdquo; or private key. If I run
@@ -74,12 +74,12 @@ in the shell&rsquo;s current working directory and its ancestor directories and
 sources them automatically as the shell&rsquo;s working directory changes or as the
 relevant <code>.envrc</code> files are changed. It&rsquo;s widely supported and very easy to
 install (<code>brew install direnv</code>) and configure:</p>
-<pre style="background-color:#f0f0f0"><span style="color:#60a0b0;font-style:italic"># Make sure to add .envrc to your .gitignore!
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">cd</span> <span style="color:#bb60d5">$PERSONAL_REPO</span> <span style="color:#666">&amp;&amp;</span> <span style="color:#4070a0;font-weight:bold">\
+<pre style="background-color:#f0f0f0"><span style="color:#60a0b0;font-style:italic"># Make sure to add .envrc to your .gitignore!</span>
+<span style="color:#007020">cd</span> <span style="color:#bb60d5">$PERSONAL_REPO</span> <span style="color:#666">&amp;&amp;</span> <span style="color:#4070a0;font-weight:bold">\
 </span><span style="color:#4070a0;font-weight:bold"></span>    <span style="color:#007020">echo</span> <span style="color:#4070a0">&#39;GIT_SSH_COMMAND=&#34;ssh -i $HOME/.ssh/github-personal&#34;&#39;</span> &gt;&gt; .envrc <span style="color:#666">&amp;&amp;</span> <span style="color:#4070a0;font-weight:bold">\
 </span><span style="color:#4070a0;font-weight:bold"></span>    direnv allow<span style="color:#4070a0">`</span>
 </pre>
-<h4>Limitation</h4>
+<h4 id="limitation">Limitation</h4>
 
 <p>This doesn&rsquo;t work if you&rsquo;re using <code>git -C</code> to run commands on a git repository
 outside that is not an ancestor of your current working directory, e.g., if you
@@ -89,7 +89,7 @@ trigger <code>direnv</code> to load your <code>.envrc</code> file because <code>
 shell, not into the <code>git</code> CLI. To support the <code>git -C</code> usecase, you&rsquo;ll need to
 pass the <code>GIT_SSH_COMMAND</code> env var to the <code>git</code> subprocess.</p>
 
-<h3>Solution 1 Alternative: the SSH config trick</h3>
+<h3 id="solution-1-alternative-the-ssh-config-trick">Solution 1 Alternative: the SSH config trick</h3>
 
 <p>For a while, I was using the <a href="https://gist.github.com/oanhnn/80a89405ab9023894df7">SSH config trick</a> which told <code>ssh</code> to use my
 personal SSH key for requests to the host <code>github-personal</code> while using my work
@@ -101,7 +101,7 @@ that&rsquo;s a weird thing to do&ndash;it&rsquo;s always going to GitHub, and an
 wants to make authenticated requests to GitHub on my behalf would also have to
 support this kind of host parameterization.</p>
 
-<h3>Solution 2: Using Firefox Containers for multiple accounts</h3>
+<h3 id="solution-2-using-firefox-containers-for-multiple-accounts">Solution 2: Using Firefox Containers for multiple accounts</h3>
 
 <p>Firefox has a feature called &ldquo;Containers&rdquo; which are basically collections of
 tabs that share the same cookies, history, etc. Each container is sort of its
@@ -114,7 +114,7 @@ new Personal container tab and navigate to github.com, I&rsquo;m already signed 
 my personal GH account, and vice versa for my work account in Work container
 tabs.</p>
 
-<h2>Conclusion</h2>
+<h3 id="conclusion">Conclusion</h3>
 
 <p>I use these tools for lots of other applications as well, including AWS
 (including using <code>direnv</code> to set <code>AWS_DEFAULT_PROFILE</code> and

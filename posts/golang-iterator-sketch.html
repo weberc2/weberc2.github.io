@@ -77,27 +77,27 @@ haven&rsquo;t tested at all.</p>
 </span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// return an iter. Not a huge loss, especially since Go doesn&#39;t support chained
 </span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// methods (e.g., `iter.Map(...).Reduce(...)`) very well, esp wrt line
 </span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#60a0b0;font-style:italic">// wrapping).
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> Iter(<span style="color:#007020;font-weight:bold">type</span> T) <span style="color:#007020;font-weight:bold">func</span>() <span style="color:#666">*</span>T
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> <span style="color:#06287e">Iter</span>(<span style="color:#007020;font-weight:bold">type</span> T) <span style="color:#007020;font-weight:bold">func</span>() <span style="color:#666">*</span>T
 
-<span style="color:#007020;font-weight:bold">func</span> next(<span style="color:#007020;font-weight:bold">type</span> I)(iter Iter(I)) <span style="color:#666">*</span>I { <span style="color:#007020;font-weight:bold">return</span> iter() }
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">next</span>(<span style="color:#007020;font-weight:bold">type</span> I)(iter <span style="color:#06287e">Iter</span>(I)) <span style="color:#666">*</span>I { <span style="color:#007020;font-weight:bold">return</span> <span style="color:#06287e">iter</span>() }
 
-<span style="color:#007020;font-weight:bold">func</span> map_(<span style="color:#007020;font-weight:bold">type</span> I, O)(iter Iter(I), f <span style="color:#007020;font-weight:bold">func</span>(I) O) Iter(O) {
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">map_</span>(<span style="color:#007020;font-weight:bold">type</span> I, O)(iter <span style="color:#06287e">Iter</span>(I), f <span style="color:#007020;font-weight:bold">func</span>(I) O) <span style="color:#06287e">Iter</span>(O) {
 	<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">func</span>() <span style="color:#666">*</span>O {
-		<span style="color:#007020;font-weight:bold">if</span> ptr <span style="color:#666">:=</span> next(iter); ptr <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
-			o <span style="color:#666">:=</span> f(<span style="color:#666">*</span>ptr)
+		<span style="color:#007020;font-weight:bold">if</span> ptr <span style="color:#666">:=</span> <span style="color:#06287e">next</span>(iter); ptr <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+			o <span style="color:#666">:=</span> <span style="color:#06287e">f</span>(<span style="color:#666">*</span>ptr)
 			<span style="color:#007020;font-weight:bold">return</span> <span style="color:#666">&amp;</span>o
 		}
 		<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">nil</span>
 	}
 }
 
-<span style="color:#007020;font-weight:bold">func</span> forEach(<span style="color:#007020;font-weight:bold">type</span> I)(iter Iter(I), f <span style="color:#007020;font-weight:bold">func</span>(I)) {
-	<span style="color:#007020;font-weight:bold">for</span> ptr <span style="color:#666">:=</span> next(iter); ptr <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span>; ptr = next(iter) {
-		f(<span style="color:#666">*</span>ptr)
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">forEach</span>(<span style="color:#007020;font-weight:bold">type</span> I)(iter <span style="color:#06287e">Iter</span>(I), f <span style="color:#007020;font-weight:bold">func</span>(I)) {
+	<span style="color:#007020;font-weight:bold">for</span> ptr <span style="color:#666">:=</span> <span style="color:#06287e">next</span>(iter); ptr <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span>; ptr = <span style="color:#06287e">next</span>(iter) {
+		<span style="color:#06287e">f</span>(<span style="color:#666">*</span>ptr)
 	}
 }
 
-<span style="color:#007020;font-weight:bold">func</span> SliceIter(<span style="color:#007020;font-weight:bold">type</span> T)(slice []T) Iter(T) {
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">SliceIter</span>(<span style="color:#007020;font-weight:bold">type</span> T)(slice []T) <span style="color:#06287e">Iter</span>(T) {
 	<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">func</span>() <span style="color:#666">*</span>T {
 		<span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020">len</span>(slice) &lt; <span style="color:#40a070">1</span> {
 			<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">nil</span>
@@ -108,13 +108,13 @@ haven&rsquo;t tested at all.</p>
 	}
 }
 
-<span style="color:#007020;font-weight:bold">func</span> main() {
-	forEach(
-		map_(
-			SliceIter([]<span style="color:#902000">string</span>{<span style="color:#4070a0">&#34;hello&#34;</span>, <span style="color:#4070a0">&#34;der&#34;</span>}),
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">main</span>() {
+	<span style="color:#06287e">forEach</span>(
+		<span style="color:#06287e">map_</span>(
+			<span style="color:#06287e">SliceIter</span>([]<span style="color:#902000">string</span>{<span style="color:#4070a0">&#34;hello&#34;</span>, <span style="color:#4070a0">&#34;der&#34;</span>}),
 			strings.ToUpper,
 		),
-		<span style="color:#007020;font-weight:bold">func</span>(s <span style="color:#902000">string</span>) { fmt.Println(s) },
+		<span style="color:#007020;font-weight:bold">func</span>(s <span style="color:#902000">string</span>) { fmt.<span style="color:#06287e">Println</span>(s) },
 	)
 }
 

@@ -76,13 +76,13 @@ something like this:</p>
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Assuming the source code is collocated to this Dockerfile, copy the whole</span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># directory into the container that is building the Docker image.</span><span style="">
-</span><span style=""></span>COPY . .<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> . .<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> go build -o /myapp<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># When a container is run from this image, run the binary</span><span style="">
-</span><span style=""></span><span style="color:#007020;font-weight:bold">CMD</span><span style="color:#4070a0"> /myapp</span><span style="">
-</span><span style=""></span></pre>
+</span><span style=""></span><span style="color:#007020;font-weight:bold">CMD</span> /myapp<span style="">
+</span></pre>
 <p>The toolchain and its dependencies (git, mercurial, etc) weigh a few hundred MBs
 (never mind the weight of the distribution itself), so it&rsquo;s common to use a
 Docker feature called <a href="https://medium.com/travis-on-docker/multi-stage-docker-builds-for-creating-tiny-go-images-e0e1867efe5a">multi-stage Builds</a> to copy the binary artifact from
@@ -92,7 +92,7 @@ something like this:</p>
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#007020;font-weight:bold">WORKDIR</span><span style="color:#4070a0"> /workspace</span><span style="">
 </span><span style=""></span><span style="">
-</span><span style=""></span>COPY . .<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> . .<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> go build -o /myapp<span style="">
 </span><span style=""></span><span style="">
@@ -100,8 +100,8 @@ something like this:</p>
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Copy the artifact from the first build stage into the second stage (which will</span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># become the final image)</span><span style="">
-</span><span style=""></span>COPY --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /myapp /myapp<span style="">
-</span><span style=""></span></pre>
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /myapp /myapp<span style="">
+</span></pre>
 <p>Note that we&rsquo;ve removed the <code>CMD /myapp</code> line because (probably for good reasons
 that I don&rsquo;t fully understand), that actually runs <code>/bin/sh -c /myapp</code>, so
 running the Docker image with the default command would otherwise give the
@@ -123,14 +123,14 @@ used if the compiler is invoked with <code>CGO_ENABLED=0</code>:</p>
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#007020;font-weight:bold">WORKDIR</span><span style="color:#4070a0"> /workspace</span><span style="">
 </span><span style=""></span><span style="">
-</span><span style=""></span>COPY . .<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> . .<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> <span style="color:#bb60d5">CGO_ENABLED</span><span style="color:#666">=</span><span style="color:#40a070">0</span> go build -o /myapp<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#007020;font-weight:bold">FROM</span><span style="color:#4070a0"> scratch</span><span style="">
 </span><span style=""></span><span style="">
-</span><span style=""></span>COPY --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /myapp /myapp<span style="">
-</span><span style=""></span></pre>
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /myapp /myapp<span style="">
+</span></pre>
 <p>Now we can get past the dynamic linking error, but we run into another curiosity
 if our application needs to make HTTPS requests (or pretty much anything else
 that needs to use SSL): <code>Get https://www.google.com: x509: certificate signed by
@@ -145,16 +145,16 @@ builder stage!</p>
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#007020;font-weight:bold">WORKDIR</span><span style="color:#4070a0"> /workspace</span><span style="">
 </span><span style=""></span><span style="">
-</span><span style=""></span>COPY . .<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> . .<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> <span style="color:#bb60d5">CGO_ENABLED</span><span style="color:#666">=</span><span style="color:#40a070">0</span> go build -o /myapp<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#007020;font-weight:bold">FROM</span><span style="color:#4070a0"> scratch</span><span style="">
 </span><span style=""></span><span style="">
-</span><span style=""></span>COPY --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /myapp /myapp<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /myapp /myapp<span style="">
 </span><span style=""></span><span style="">
-</span><span style=""></span>COPY --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/<span style="">
-</span><span style=""></span></pre>
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/<span style="">
+</span></pre>
 <p>Now the application should run fine; however, by default, Docker images are run
 as root user&ndash;to follow security best practices, we should use a nonroot user.
 However, <code>scratch</code> doesn&rsquo;t have programs like <code>adduser</code> nor even <code>echo</code>, so we
@@ -165,7 +165,7 @@ builder stage and copy <em>that</em> over to the final stage:</p>
 </span><span style=""></span><span style="color:#007020;font-weight:bold">FROM</span><span style="color:#4070a0"> golang</span><span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Assuming the source code is collocated to this Dockerfile</span><span style="">
-</span><span style=""></span>COPY . .<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> . .<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Build the Go app with CGO_ENABLED=0 so we use the pure-Go implementations for</span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># things like DNS resolution (so we don&#39;t build a binary that depends on system</span><span style="">
@@ -181,19 +181,19 @@ builder stage and copy <em>that</em> over to the final stage:</p>
 </span><span style=""></span><span style="color:#007020;font-weight:bold">FROM</span><span style="color:#4070a0"> scratch</span><span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Copy the binary from the builder stage</span><span style="">
-</span><span style=""></span>COPY --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /myapp /myapp<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /myapp /myapp<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Copy the certs from the builder stage</span><span style="">
-</span><span style=""></span>COPY --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Copy the /etc_passwd file we created in the builder stage into /etc/passwd in</span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># the target stage. This creates a new non-root user as a security best</span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># practice.</span><span style="">
-</span><span style=""></span>COPY --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /etc_passwd /etc/passwd<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /etc_passwd /etc/passwd<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Run as the new non-root by default</span><span style="">
-</span><span style=""></span>USER nobody<span style="">
-</span><span style=""></span></pre>
+</span><span style=""></span><span style="color:#007020;font-weight:bold">USER</span><span style="color:#4070a0"> nobody</span><span style="">
+</span></pre>
 <p>It turns out this is all we <em>need</em> to do. The certs and /etc/passwd file are
 negligible in terms of size, so the final image is dominated by the size of your
 executable. My small executable weighed 4.5 MB uncompressed and ECR (Amazon&rsquo;s
@@ -214,11 +214,11 @@ redownload dependencies when either the <code>go.mod</code> or <code>go.sum</cod
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Copy in just the go.mod and go.sum files, and download the dependencies. By</span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># doing this before copying in the other dependencies, the Docker build cache</span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># can skip these steps so long as neither of these two files change.</span><span style="">
-</span><span style=""></span>COPY go.mod go.sum ./<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> go.mod go.sum ./<span style="">
 </span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> go mod download<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Assuming the source code is collocated to this Dockerfile</span><span style="">
-</span><span style=""></span>COPY . .<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> . .<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Build the Go app with CGO_ENABLED=0 so we use the pure-Go implementations for</span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># things like DNS resolution (so we don&#39;t build a binary that depends on system</span><span style="">
@@ -227,7 +227,7 @@ redownload dependencies when either the <code>go.mod</code> or <code>go.sum</cod
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># ...</span><span style="">
 </span><span style=""></span><span style="">
-</span><span style=""></span></pre>
+</span></pre>
 <p>This wasn&rsquo;t much more work than building off of an Alpine base image, and I
 deployed it this way. The size advantage over Alpine is still only ~5 MB, and
 while that&rsquo;s a significant percentage, the impact on your workflow or
@@ -239,11 +239,11 @@ that&ndash;<a href="https://www.securityweek.com/code-execution-alpine-linux-imp
 NOTE: headers start at h3 b/c h1 is for site header and h2 is for post title
 -->
 
-<h3>Contact</h3>
+<h3 id="contact">Contact</h3>
 
 <p>Please share corrections, comments, or feedback on <a href="https://www.reddit.com/r/golang/comments/9u7qnl/deploying_go_apps_on_docker_scratch_images/">Reddit</a> or <a href="https://twitter.com/weberc2">Twitter</a>.</p>
 
-<h3>TL;DR</h3>
+<h3 id="tl-dr">TL;DR</h3>
 
 <p>By using a <code>scratch</code> base image, we save about ~5MB over Alpine base images and
 we ship with a smaller attack surface.</p>
@@ -254,11 +254,11 @@ we ship with a smaller attack surface.</p>
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Copy in just the go.mod and go.sum files, and download the dependencies. By</span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># doing this before copying in the other dependencies, the Docker build cache</span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># can skip these steps so long as neither of these two files change.</span><span style="">
-</span><span style=""></span>COPY go.mod go.sum ./<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> go.mod go.sum ./<span style="">
 </span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> go mod download<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Assuming the source code is collocated to this Dockerfile</span><span style="">
-</span><span style=""></span>COPY . .<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> . .<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Build the Go app with CGO_ENABLED=0 so we use the pure-Go implementations for</span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># things like DNS resolution (so we don&#39;t build a binary that depends on system</span><span style="">
@@ -274,20 +274,20 @@ we ship with a smaller attack surface.</p>
 </span><span style=""></span><span style="color:#007020;font-weight:bold">FROM</span><span style="color:#4070a0"> scratch</span><span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Copy the binary from the builder stage</span><span style="">
-</span><span style=""></span>COPY --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /myapp /myapp<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /myapp /myapp<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Copy the certs from the builder stage</span><span style="">
-</span><span style=""></span>COPY --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Copy the /etc_passwd file we created in the builder stage into /etc/passwd in</span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># the target stage. This creates a new non-root user as a security best</span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># practice.</span><span style="">
-</span><span style=""></span>COPY --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /etc_passwd /etc/passwd<span style="">
+</span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --from<span style="color:#666">=</span><span style="color:#40a070">0</span> /etc_passwd /etc/passwd<span style="">
 </span><span style=""></span><span style="">
 </span><span style=""></span><span style="color:#60a0b0;font-style:italic"># Run as the new non-root by default</span><span style="">
-</span><span style=""></span>USER nobody<span style="">
-</span><span style=""></span></pre>
-<h3>EDIT</h3>
+</span><span style=""></span><span style="color:#007020;font-weight:bold">USER</span><span style="color:#4070a0"> nobody</span><span style="">
+</span></pre>
+<h3 id="edit">EDIT</h3>
 
 <ul>
 <li>Thanks to Reddit user <a href="https://www.reddit.com/user/ROL_A">ROL_A</a> for correcting a typo in the COPY statement

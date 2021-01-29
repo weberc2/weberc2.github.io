@@ -55,7 +55,7 @@ a few examples that will (<em>hopefully</em>) demonstrate this clearly:</p>
 <pre style="background-color:#f0f0f0"><span style="color:#007020;font-weight:bold">var</span> nilInterface <span style="color:#007020;font-weight:bold">interface</span>{} = <span style="color:#007020;font-weight:bold">nil</span>
 <span style="color:#007020">println</span>(<span style="color:#4070a0">&#34;nil interface is nil?:&#34;</span>, nilInterface <span style="color:#666">==</span> <span style="color:#007020;font-weight:bold">nil</span>) <span style="color:#60a0b0;font-style:italic">// true
 </span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">println</span>(nilInterface) <span style="color:#60a0b0;font-style:italic">// (0x0, 0x0)
-</span><span style="color:#60a0b0;font-style:italic"></span></pre>
+</span></pre>
 <p>Note that printing the nil interface gives <code>(0x0, 0x0)</code>. An interface has 2
 components: type information and value information. In the case of a nil
 interface, both components are set to zero.</p>

@@ -54,7 +54,7 @@ highlights:</p>
 
 <!-- more -->
 
-<h3>iPad Viewport Bug</h3>
+<h3 id="ipad-viewport-bug">iPad Viewport Bug</h3>
 
 <p>Jen got a new iPad this morning, so I decided to check out how this blog looked
 in iPad format. It turns out, not great. Everything was zoomed in about 3x. It
@@ -73,7 +73,7 @@ and I largely still don&rsquo;t know; however, this was telling other browsers (
 least on iPad) to scale everything up. The fix was to set this width property
 to a special <code>device-width</code> value.</p>
 
-<h3>Syndication</h3>
+<h3 id="syndication">Syndication</h3>
 
 <p>One of the reasons I built this blog is that the idea of blogging harkens back
 to the pre-social-media days when the Internet was smaller, more heterogeneous,
@@ -92,12 +92,12 @@ regularly.</p>
 library (<a href="https://pkg.go.dev/github.com/gorilla/feeds">gorilla/feeds</a>) and it integrated neatly into my existing
 architecture. It only took me ~an hour to complete the feature. The bulk of the
 work is <a href="https://github.com/weberc2/neon/blob/9275ef8029a8325d7d1b08b011adaa6c9238b2d3/build/feed.go">here</a>:</p>
-<pre style="background-color:#f0f0f0"><span style="color:#007020;font-weight:bold">func</span> buildFeed(conf config.Config, posts ByDate) <span style="color:#902000">error</span> {
+<pre style="background-color:#f0f0f0"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">buildFeed</span>(conf config.Config, posts ByDate) <span style="color:#902000">error</span> {
 	<span style="color:#007020;font-weight:bold">var</span> now time.Time
 	<span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020">len</span>(posts) &gt; <span style="color:#40a070">0</span> {
-		now = time.Time(posts[<span style="color:#40a070">0</span>].Date)
+		now = time.<span style="color:#06287e">Time</span>(posts[<span style="color:#40a070">0</span>].Date)
 	} <span style="color:#007020;font-weight:bold">else</span> {
-		now = time.Now()
+		now = time.<span style="color:#06287e">Now</span>()
 	}
 
 	feed <span style="color:#666">:=</span> <span style="color:#666">&amp;</span>feeds.Feed{
@@ -112,37 +112,37 @@ work is <a href="https://github.com/weberc2/neon/blob/9275ef8029a8325d7d1b08b011
 			feed.Items,
 			<span style="color:#666">&amp;</span>feeds.Item{
 				Title:       post.Title,
-				Link:        <span style="color:#666">&amp;</span>feeds.Link{Href: relLink(conf.SiteRoot, post.ID)},
+				Link:        <span style="color:#666">&amp;</span>feeds.Link{Href: <span style="color:#06287e">relLink</span>(conf.SiteRoot, post.ID)},
 				Author:      <span style="color:#666">&amp;</span>feeds.Author{Name: conf.Feed.Author},
-				Created:     time.Time(post.Date),
-				Description: <span style="color:#007020">string</span>(snippet(post.Body)),
+				Created:     time.<span style="color:#06287e">Time</span>(post.Date),
+				Description: <span style="color:#007020">string</span>(<span style="color:#06287e">snippet</span>(post.Body)),
 			},
 		)
 	}
 
-	file, err <span style="color:#666">:=</span> os.Create(filepath.Join(conf.OutputDirectory, <span style="color:#4070a0">&#34;feed.atom&#34;</span>))
+	file, err <span style="color:#666">:=</span> os.<span style="color:#06287e">Create</span>(filepath.<span style="color:#06287e">Join</span>(conf.OutputDirectory, <span style="color:#4070a0">&#34;feed.atom&#34;</span>))
 	<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
 		<span style="color:#007020;font-weight:bold">return</span> err
 	}
 	<span style="color:#007020;font-weight:bold">defer</span> <span style="color:#007020;font-weight:bold">func</span>() {
-		<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">:=</span> file.Close(); err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
-			log.Printf(<span style="color:#4070a0">&#34;ERROR Failed to close file: %v&#34;</span>, err)
+		<span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">:=</span> file.<span style="color:#06287e">Close</span>(); err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+			log.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;ERROR Failed to close file: %v&#34;</span>, err)
 		}
 	}()
 
-	<span style="color:#007020;font-weight:bold">return</span> feed.WriteAtom(file)
+	<span style="color:#007020;font-weight:bold">return</span> feed.<span style="color:#06287e">WriteAtom</span>(file)
 }
 </pre>
-<h3>Markdown Table</h3>
+<h3 id="markdown-table">Markdown Table</h3>
 
 <p>For my <a href="https://weberc2.github.io/posts/homelab-part-i-hardware.html">Homelab/Hardware post</a>, I wanted an HTML table to represent my bill
 of materials for my Raspberry Pi cluster. Neon uses a high-quality, extensible
 markdown library, <a href="https://pkg.go.dev/gopkg.in/russross/blackfriday.v2">blackfriday</a>. As it turns out, the library has built-in
 support for markdown tables that we can enable by bitwise-OR-ing it into the
 list of extensions (<a href="https://github.com/weberc2/neon/blob/9275ef8029a8325d7d1b08b011adaa6c9238b2d3/build/util.go#L40-L44">source</a>):</p>
-<pre style="background-color:#f0f0f0">blackfriday.Run(
+<pre style="background-color:#f0f0f0">blackfriday.<span style="color:#06287e">Run</span>(
     <span style="color:#60a0b0;font-style:italic">// ...
-</span><span style="color:#60a0b0;font-style:italic"></span>    blackfriday.WithExtensions(
+</span><span style="color:#60a0b0;font-style:italic"></span>    blackfriday.<span style="color:#06287e">WithExtensions</span>(
         blackfriday.CommonExtensions|
             blackfriday.Footnotes|
             blackfriday.Tables,
@@ -153,7 +153,7 @@ list of extensions (<a href="https://github.com/weberc2/neon/blob/9275ef8029a832
 <p>That generates a bare HTML table, but I still had to style it with CSS to make
 it render like one would expect when viewing it on a website.</p>
 
-<h3>Broken links in snippets</h3>
+<h3 id="broken-links-in-snippets">Broken links in snippets</h3>
 
 <p>When writing a post such as this one, I often want to link to other posts that
 I&rsquo;ve written. I don&rsquo;t want to hard-code the <code>SiteRoot</code> (e.g.,
@@ -196,7 +196,7 @@ absolute link node and pass that into the base renderer (<a href="https://github
 	linkPrefix      <span style="color:#902000">string</span>
 }
 
-<span style="color:#007020;font-weight:bold">func</span> (r <span style="color:#666">*</span>renderer) RenderNode(
+<span style="color:#007020;font-weight:bold">func</span> (r <span style="color:#666">*</span>renderer) <span style="color:#06287e">RenderNode</span>(
 	w io.Writer,
 	node <span style="color:#666">*</span>blackfriday.Node,
 	entering <span style="color:#902000">bool</span>,
@@ -205,8 +205,8 @@ absolute link node and pass that into the base renderer (<a href="https://github
 	n <span style="color:#666">:=</span> <span style="color:#666">*</span>node <span style="color:#60a0b0;font-style:italic">// copy the node
 </span><span style="color:#60a0b0;font-style:italic"></span>
     <span style="color:#60a0b0;font-style:italic">// if the node is a relative link, then make it an absolute link
-</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">if</span> bytes.HasPrefix(n.LinkData.Destination, prefix) {
-		n.LinkData.Destination = []<span style="color:#007020">byte</span>(fmt.Sprintf(
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">if</span> bytes.<span style="color:#06287e">HasPrefix</span>(n.LinkData.Destination, prefix) {
+		n.LinkData.Destination = []<span style="color:#007020">byte</span>(fmt.<span style="color:#06287e">Sprintf</span>(
 			<span style="color:#4070a0">&#34;%s/%s&#34;</span>,
 			r.linkPrefix,
 			n.LinkData.Destination[<span style="color:#007020">len</span>(prefix):],
@@ -214,10 +214,10 @@ absolute link node and pass that into the base renderer (<a href="https://github
 	}
 
     <span style="color:#60a0b0;font-style:italic">// call the base renderer with the copied, potentially absolute-link, node
-</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">return</span> r.Renderer.RenderNode(w, <span style="color:#666">&amp;</span>n, entering)
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">return</span> r.Renderer.<span style="color:#06287e">RenderNode</span>(w, <span style="color:#666">&amp;</span>n, entering)
 }
 </pre>
-<h3>Decoupling source files from Neon details</h3>
+<h3 id="decoupling-source-files-from-neon-details">Decoupling source files from Neon details</h3>
 
 <p>Part of my philosophy for Neon is that the input markdown files should be
 loosely-coupled from various details about Neon and from its configuration. If
