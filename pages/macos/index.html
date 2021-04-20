@@ -2,7 +2,8 @@
 <html>
 
 <head>
-<title>Force RGB-mode (fix pink tint) in macOS in 3 easy steps</title>
+<title>Craig Weber</title>
+
     <meta charset="UTF-8">
     <meta name=viewport content='width=device-width'>
     <meta name="google-site-verification" content="cw0Nbm73FcLB9kSYvCUhc5q-6CrLFcgJQy0h_qzG0O8" />
@@ -30,14 +31,32 @@
 <body>
     <h1 id="site-header"><a id="site-title" href="http://localhost:8000/index.html">Craig Weber</a></h1>
     <div id="page" class="center-column">
-<div class="post">
-    <h2 class="post-title">Force RGB-mode (fix pink tint) in macOS in 3 easy steps</h2>
+<div id="post-list">
+    <div class="post">
+        <h2 class="post-title"><a href=http://localhost:8000/posts/working-around-ext4-on-macos.html>Working around ext4 on MacOS</a></h2>
+<div class="post-meta">
+    <span class="post-date">2021-01-23</span>
+    <span class="tag"><a href="http://localhost:8000/pages/macos/index.html">macos</a></span>
+    <span class="tag"><a href="http://localhost:8000/pages/ext4/index.html">ext4</a></span>
+</div>
+        <div class="post-body">
+            <p>One of the maddening things about MacOS is that it lacks ext4 file system
+support. This is a bummer because I use ext4 on many of my external hard
+drives as well as boot volumes for various headless Linux machines. Once in a
+while, these boot drives become corrupted (due to user error) and I find myself
+wanting to mount the file system on another system to repair the error. Ideally
+I can just pop it in a SATA&lt;-&gt;USB adapter and mount it on my Mac, but alas…</p>
+            <a href=http://localhost:8000/posts/working-around-ext4-on-macos.html>Read More</a>
+        </div>
+    </div>
+    <div class="post">
+        <h2 class="post-title"><a href=http://localhost:8000/posts/macos-force-rgb.html>Force RGB-mode (fix pink tint) in macOS in 3 easy steps</a></h2>
 <div class="post-meta">
     <span class="post-date">2021-01-04</span>
     <span class="tag"><a href="http://localhost:8000/pages/macos/index.html">macos</a></span>
 </div>
-    <div class="post-body">
-        <p>For whatever reason, macOS Catalina and Big Sur were both tinting my external
+        <div class="post-body">
+            <p>For whatever reason, macOS Catalina and Big Sur were both tinting my external
 monitor pink. Some research indicated that it had to do with the color mode,
 notably that I needed to force RGB. MacOS’s UI doesn’t give the user the
 ability to change the color mode directly, so you have to hack around the
@@ -48,25 +67,29 @@ Protection (basically the stuff that prevents even the super user from changing
 certain files and directories), booting into recovery mode, changing boot files
 (which can put your system into a boot loop, as I discovered the hard way), and
 a number of other dangerous, arcane things.</p><p>Fortunately, I found a sequence that is much safer and easier (tested on both
-Big Sur and Catalina on two distinct MacBook Pros):</p><!-- more -->
-<ol><li><p>From your home directory, run:</p><pre><code class="language-bash">$ curl -LO https://gist.github.com/adaugherity/7435890/raw/3403436446665aec2b5cf423ea4a5af63125e5af/patch-edid.rb`
-$ chmod +x ~/patch-edid.rb
-$ ./patch-edid.rb
-</code></pre><p>This will download and run the patch-edid.rb script that the various guides
-around the Internet direct you towards. This script will create a directory
-in your home folder that looks like <code>DisplayVendorID-172</code>.</p></li><li><p>Make the <code>Overrides</code> directory. By making this directory, we don’t have to
-use the original Overrides directory which would require disabling SIP and
-other steps: <code>sudo mkdir -p /Library/Displays/Contents/Resources/Overrides/</code>.</p></li><li><p>Move the generated <code>DisplayVendorID-*</code> directory into the <code>Overrides</code>
-directory: <code>sudo mv ~/DisplayVendorID-* /Library/Displays/Contents/Resources/Overrides/</code></p></li></ol>
+Big Sur and Catalina on two distinct MacBook Pros):</p>
+            <a href=http://localhost:8000/posts/macos-force-rgb.html>Read More</a>
+        </div>
+    </div>
+    <div class="post">
+        <h2 class="post-title"><a href=http://localhost:8000/posts/installing-go-on-linux-and-osx.html>Installing Go on Linux & OS X</a></h2>
+<div class="post-meta">
+    <span class="post-date">2016-01-19</span>
+    <span class="tag"><a href="http://localhost:8000/pages/macos/index.html">macos</a></span>
+    <span class="tag"><a href="http://localhost:8000/pages/golang/index.html">golang</a></span>
+</div>
+        <div class="post-body">
+            <p>This is a guide for Unix systems (OS X and Linux), but Windows users shouldn’t
+find it too difficult to figure out the equivalent commands for their platform.
+I’m not assuming much prior knowledge, but readers should at least be
+comfortable navigating around a Unix terminal, and any familiarity with
+environment variables is helpful (a quick Google search for “environment
+variables” should suffice). Without further ado:</p>
+            <a href=http://localhost:8000/posts/installing-go-on-linux-and-osx.html>Read More</a>
+        </div>
     </div>
 </div>
         <div id="pagination">
-            <div class="pagination" id="pagination-prev">
-                <a href=http://localhost:8000/posts/homelab-part-i-hardware.html>&laquo;&nbsp;Previous</a>
-            </div>
-            <div class="pagination" id="pagination-next">
-                <a href=http://localhost:8000/posts/homelab-intro.html>Next&nbsp;&raquo;</a>
-            </div>
         </div>
     </div>
     <div id="footer">

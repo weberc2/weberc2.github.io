@@ -2,20 +2,17 @@
 <html>
 
 <head>
+<title>Homelab Part I: Hardware</title>
+    <meta charset="UTF-8">
     <meta name=viewport content='width=device-width'>
     <meta name="google-site-verification" content="cw0Nbm73FcLB9kSYvCUhc5q-6CrLFcgJQy0h_qzG0O8" />
     <link href='https://fonts.googleapis.com/css?family=Neuton|Merriweather|Inconsolata:400,700' rel='stylesheet'
         type='text/css'>
-    <link rel="stylesheet" type="text/css" href="https://weberc2.github.io/resources/style.css" />
-    <link
-        rel="alternate"
-        type="application/atom+xml"
-        title="Craig Weber"
-        href="https://weberc2.github.io/feed.atom"
-    >
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/static/style.css">
+    <link rel="alternate" type="application/atom+xml" title="Craig Weber" href="http://localhost:8000/feed.atom">
     <script>
         function submitAnalytics() {
-            const analyticsUrl = "https:\/\/azd7mnx3pk.execute-api.us-east-2.amazonaws.com";
+            const analyticsUrl = "https://azd7mnx3pk.execute-api.us-east-2.amazonaws.com";
             var body = document.getElementById("body");
             var img = document.createElement("img");
             var qstring = [
@@ -28,139 +25,48 @@
             body.appendChild(img);
         }
     </script>
-    
-<title>Homelab Part I: Hardware</title>
-
 </head>
 
-<body onload=submitAnalytics()>
-    <h1 id="site-header">
-        <a id="site-title" href="https://weberc2.github.io/index.html">
-            Craig Weber
-        </a>
-    </h1>
+<body>
+    <h1 id="site-header"><a id="site-title" href="http://localhost:8000/index.html">Craig Weber</a></h1>
     <div id="page" class="center-column">
-        
-<div id="post">
-    <h2 id="post-title">Homelab Part I: Hardware</h2>
-    <div><span class="post-date">2021-01-14</span></div>
+<div class="post">
+    <h2 class="post-title">Homelab Part I: Hardware</h2>
+<div class="post-meta">
+    <span class="post-date">2021-01-14</span>
+    <span class="tag"><a href="http://localhost:8000/pages/homelab/index.html">homelab</a></span>
+</div>
     <div class="post-body">
-        
         <p>For hardware, I settled on Raspberry Pi 4Bs. They support up to 8GB of RAM
 (enough power to run the k3s master nodes) and USB 3.0 for fast external SSD
 I/O. The only downside of the 4Bs is that they require more power than the 3Bs,
 and the same multiport USB power supplies that could support a 3B cluster
-couldn&rsquo;t support a 4B cluster. To solve for this, I decided on PoE hats and a
+couldn’t support a 4B cluster. To solve for this, I decided on PoE hats and a
 PoE switch. This halves the number of cables that need to be run to each Pi,
-which makes the Pi cluster that much more enjoyable and easy on the eyes.</p>
-
-<!-- more -->
-
-<p>Here&rsquo;s my current bill of materials:</p>
-
-<table>
-<thead>
-<tr>
-<th>Item</th>
-<th>Price</th>
-<th>Quantity</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><a href="https://www.amazon.com/gp/product/B08DJ9MLHV/ref=ppx_yo_dt_b_asin_title_o06_s00?ie=UTF8&amp;psc=1">Raspberry Pi 4B</a></td>
-<td>$90</td>
-<td>2</td>
-</tr>
-
-<tr>
-<td><a href="https://www.amazon.com/dp/B01BW0AD1W/?coliid=I2RH40DWH8TU7S&amp;colid=3T0XFW8OAF4UV&amp;psc=1&amp;ref_=lv_ov_lig_dp_it">4 PoE port switch</a></td>
-<td>$70</td>
-<td>1</td>
-</tr>
-
-<tr>
-<td><a href="https://www.amazon.com/dp/B01IQWGI0O/?coliid=I114GRYN939O82&amp;colid=3T0XFW8OAF4UV&amp;psc=1&amp;ref_=lv_ov_lig_dp_it">6 pack cat6 cable</a></td>
-<td>$14</td>
-<td>1</td>
-</tr>
-
-<tr>
-<td><a href="https://www.amazon.com/dp/B07XB5PR9J/?coliid=I1G27N91A9TCKN&amp;colid=9GAEGP20CUK&amp;psc=1&amp;ref_=lv_ov_lig_dp_it">PoE Hat</a></td>
-<td>$25</td>
-<td>2</td>
-</tr>
-
-<tr>
-<td><a href="https://www.amazon.com/dp/B07M7Q21N7/?coliid=I3AXM6RUV7D99C&amp;colid=9GAEGP20CUK&amp;psc=1&amp;ref_=lv_ov_lig_dp_it">Samsung 500GB SSD</a></td>
-<td>$85</td>
-<td>1</td>
-</tr>
-
-<tr>
-<td><a href="https://www.amazon.com/dp/B07TJT6W8K/?coliid=I4GDI0L3EGR9B&amp;colid=9GAEGP20CUK&amp;psc=1&amp;ref_=lv_ov_lig_dp_it">M.2 NVMe SSD case</a></td>
-<td>$24</td>
-<td>1</td>
-</tr>
-
-<tr>
-<td><a href="https://www.amazon.com/dp/B07K72STFB/?coliid=IIMX6TFCHY31M&amp;colid=3T0XFW8OAF4UV&amp;psc=1&amp;ref_=lv_ov_lig_dp_it">Cluster Case</a></td>
-<td>$19</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p>I have 2 Raspberry Pi 4Bs and 2 PoE hats, but I expect to procure more of these
-incrementally. The 8GB nodes probably aren&rsquo;t necessary, but I wouldn&rsquo;t get 1GB
-nodes despite the tempting price point.</p>
-
-<h3 id="power">Power</h3>
-
-<p>Since I&rsquo;m using PoE for a power supply, if I exceed the 4 PoE ports allowed by
-my PoE switch, I&rsquo;ll have to buy another PoE switch or upgrade. TP-Link, the
-manufacturer of my current switch, also makes an <a href="https://www.amazon.com/dp/B0721V1TGV/?coliid=I3MS3H10K66CGU&amp;colid=9GAEGP20CUK&amp;psc=1&amp;ref_=lv_ov_lig_dp_it">8-port PoE switch</a> (these
-switches are a little confusing because they&rsquo;re actually 8-port and 16-port
-switches respectively, but only half of the ports are PoE&ndash;I&rsquo;m listing them
-here by their PoE port count which is more interesting for our purposes).</p>
-
-<h3 id="storage">Storage</h3>
-
-<p>My storage solution was informed by Jeff Geerling&rsquo;s excellent blog posts:</p>
-
-<ul>
-<li><a href="https://www.jeffgeerling.com/blog/2020/fastest-usb-storage-options-raspberry-pi">The fastest USB storage options for Raspberry Pi</a></li>
-<li><a href="https://www.jeffgeerling.com/blog/2020/uasp-makes-raspberry-pi-4-disk-io-50-faster">UASP makes Raspberry Pi disk I/O 50% faster</a></li>
-</ul>
-
-<p>Notably, by using an NVMe-to-USB-3 case that speaks UASP, we can take advantage
-of much of an NVMe SSD&rsquo;s performance (note that a SATA SSD is also probably
+which makes the Pi cluster that much more enjoyable and easy on the eyes.</p><!-- more -->
+<p>Here’s my current bill of materials:</p><table><thead><tr><th>Item</th><th>Price</th><th>Quantity</th></tr></thead><tbody><tr><td><a href="https://www.amazon.com/gp/product/B08DJ9MLHV/ref=ppx_yo_dt_b_asin_title_o06_s00?ie=UTF8&amp;psc=1" title="">Raspberry Pi 4B</a></td><td>$90</td><td>2</td></tr><tr><td><a href="https://www.amazon.com/dp/B01BW0AD1W/?coliid=I2RH40DWH8TU7S&amp;colid=3T0XFW8OAF4UV&amp;psc=1&amp;ref_=lv_ov_lig_dp_it" title="">4 PoE port switch</a></td><td>$70</td><td>1</td></tr><tr><td><a href="https://www.amazon.com/dp/B01IQWGI0O/?coliid=I114GRYN939O82&amp;colid=3T0XFW8OAF4UV&amp;psc=1&amp;ref_=lv_ov_lig_dp_it" title="">6 pack cat6 cable</a></td><td>$14</td><td>1</td></tr><tr><td><a href="https://www.amazon.com/dp/B07XB5PR9J/?coliid=I1G27N91A9TCKN&amp;colid=9GAEGP20CUK&amp;psc=1&amp;ref_=lv_ov_lig_dp_it" title="">PoE Hat</a></td><td>$25</td><td>2</td></tr><tr><td><a href="https://www.amazon.com/dp/B07M7Q21N7/?coliid=I3AXM6RUV7D99C&amp;colid=9GAEGP20CUK&amp;psc=1&amp;ref_=lv_ov_lig_dp_it" title="">Samsung 500GB SSD</a></td><td>$85</td><td>1</td></tr><tr><td><a href="https://www.amazon.com/dp/B07TJT6W8K/?coliid=I4GDI0L3EGR9B&amp;colid=9GAEGP20CUK&amp;psc=1&amp;ref_=lv_ov_lig_dp_it" title="">M.2 NVMe SSD case</a></td><td>$24</td><td>1</td></tr><tr><td><a href="https://www.amazon.com/dp/B07K72STFB/?coliid=IIMX6TFCHY31M&amp;colid=3T0XFW8OAF4UV&amp;psc=1&amp;ref_=lv_ov_lig_dp_it" title="">Cluster Case</a></td><td>$19</td><td>1</td></tr></tbody></table><p>I have 2 Raspberry Pi 4Bs and 2 PoE hats, but I expect to procure more of these
+incrementally. The 8GB nodes probably aren’t necessary, but I wouldn’t get 1GB
+nodes despite the tempting price point.</p><h3>Power</h1><p>Since I’m using PoE for a power supply, if I exceed the 4 PoE ports allowed by
+my PoE switch, I’ll have to buy another PoE switch or upgrade. TP-Link, the
+manufacturer of my current switch, also makes an <a href="https://www.amazon.com/dp/B0721V1TGV/?coliid=I3MS3H10K66CGU&amp;colid=9GAEGP20CUK&amp;psc=1&amp;ref_=lv_ov_lig_dp_it" title="">8-port PoE switch</a> (these
+switches are a little confusing because they’re actually 8-port and 16-port
+switches respectively, but only half of the ports are PoE–I’m listing them
+here by their PoE port count which is more interesting for our purposes).</p><h3>Storage</h1><p>My storage solution was informed by Jeff Geerling’s excellent blog posts:</p><ul><li><a href="https://www.jeffgeerling.com/blog/2020/fastest-usb-storage-options-raspberry-pi" title="">The fastest USB storage options for Raspberry Pi</a></li><li><a href="https://www.jeffgeerling.com/blog/2020/uasp-makes-raspberry-pi-4-disk-io-50-faster" title="">UASP makes Raspberry Pi disk I/O 50% faster</a></li></ul><p>Notably, by using an NVMe-to-USB-3 case that speaks UASP, we can take advantage
+of much of an NVMe SSD’s performance (note that a SATA SSD is also probably
 fast enough to saturate a USB 3.0 connection, but UASP appears to be
-significant).</p>
-
-<p>I only have one disk for now, and I&rsquo;ll either simply sync (rclone) that with S3
-for backups or I&rsquo;ll get another disk or two and do some sort of replication
-(such as RAID or <a href="https://longhorn.io/">Longhorn.io</a> or similar) or both.</p>
-
-<h3 id="conclusion">Conclusion</h3>
-
-<p>This pretty much covers it for the hardware. Next time we&rsquo;ll dig into some
+significant).</p><p>I only have one disk for now, and I’ll either simply sync (rclone) that with S3
+for backups or I’ll get another disk or two and do some sort of replication
+(such as RAID or <a href="https://longhorn.io/" title="">Longhorn.io</a> or similar) or both.</p><h3>Conclusion</h1><p>This pretty much covers it for the hardware. Next time we’ll dig into some
 simple automation to allow us to maintainably set up hosts to join the cluster.</p>
-
     </div>
 </div>
-
         <div id="pagination">
-            
             <div class="pagination" id="pagination-prev">
-                <a href="https://weberc2.github.io/posts/changelog.html">&laquo;&nbsp;Previous</a>
+                <a href=http://localhost:8000/posts/changelog.html>&laquo;&nbsp;Previous</a>
             </div>
-            
-            
             <div class="pagination" id="pagination-next">
-                <a href="https://weberc2.github.io/posts/macos-force-rgb.html">Next&nbsp;&raquo;</a>
+                <a href=http://localhost:8000/posts/macos-force-rgb.html>Next&nbsp;&raquo;</a>
             </div>
-            
         </div>
     </div>
     <div id="footer">
@@ -173,35 +79,21 @@ simple automation to allow us to maintainably set up hosts to join the cluster.<
                     opinions are my own.
                 </p>
             </div>
-            
             <div class="footer-section">
                 <h4>Contact</h4>
                 <ul>
-                    
-                    <li>
-                        <a href="http://twitter.com/weberc2">
-                            Twitter
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="http://github.com/weberc2">
-                            Github
-                        </a>
-                    </li>
-                    
-                    <li><a href="https://weberc2.github.io/feed.atom">Atom Feed</a></li>
+                    <li><a href="https://twitter.com/weberc2">Twitter</a></li>
+                    <li><a href="https://github.com/weberc2">Github</a></li>
+                    <li><a href="http://localhost:8000/feed.atom">Atom Feed</a></li>
                 </ul>
             </div>
-            
-            
             <div class="footer-section">
                 <h4>Copyright</h4>
                 Craig Weber 2016
             </div>
-            
         </div>
     </div>
+
 </body>
 
-</html>
+</html> 

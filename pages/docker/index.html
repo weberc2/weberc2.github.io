@@ -2,7 +2,8 @@
 <html>
 
 <head>
-<title>Blog infrastructure updates</title>
+<title>Craig Weber</title>
+
     <meta charset="UTF-8">
     <meta name=viewport content='width=device-width'>
     <meta name="google-site-verification" content="cw0Nbm73FcLB9kSYvCUhc5q-6CrLFcgJQy0h_qzG0O8" />
@@ -30,30 +31,32 @@
 <body>
     <h1 id="site-header"><a id="site-title" href="http://localhost:8000/index.html">Craig Weber</a></h1>
     <div id="page" class="center-column">
-<div class="post">
-    <h2 class="post-title">Blog infrastructure updates</h2>
+<div id="post-list">
+    <div class="post">
+        <h2 class="post-title"><a href=http://localhost:8000/posts/golang-docker-scratch-app.html>Deploying Go apps on Docker scratch images</a></h2>
 <div class="post-meta">
-    <span class="post-date">2020-03-28</span>
-    <span class="tag"><a href="http://localhost:8000/pages/meta/index.html">meta</a></span>
+    <span class="post-date">2018-11-04</span>
+    <span class="tag"><a href="http://localhost:8000/pages/docker/index.html">docker</a></span>
+    <span class="tag"><a href="http://localhost:8000/pages/golang/index.html">golang</a></span>
 </div>
-    <div class="post-body">
-        <p>Another year, another blog update. BitBucket is deprecating their Mercurial
-support, and while I really do appreciate Mercurial, it’s just easier for me to
-keep everything in GitHub than trying to find another Mercurial provider. Also,
-GitHub seems to be improving at a pretty rapid pace. So voila, this blog is now
-hosted on GitHub. This includes my pet static site generator, <a href="https://github.com/weberc2/neon" title=""><code>neon</code></a> which
-is used to generate this site.</p><p>Further, my pet build tool <a href="https://github.com/weberc2/builder" title=""><code>builder</code></a> is sufficiently far along that I
-can use it to automate the building of this static site. <code>builder</code> is pretty
-cool so far. At some point I will write a dedicated post about it.</p>
+        <div class="post-body">
+            <p>NOTE: If you’re here for the TL;DR, skip to the bottom.</p><p>A few months ago I built out some monitoring infrastructure at work using Go. I
+deployed it to ECS (a Docker orchestrator, functionally similar to Kubernetes),
+and for fun I decided to see how minimal I could make the image. I’ve used
+Alpine base images before (which weigh in at about 5 MB and usually another 5 MB
+for a small Go binary), but being that Go advertises itself as requiring only a
+Linux kernel (most programming languages depend on an interpreter, a VM, and/or
+system libraries–the latter abstract over kernel functionality and sometimes
+provide a stable interface to the kernel), I wanted to see how true or practical
+this was, and I wanted to better understand the things that I was taking for
+granted by using distros.</p><p>As a matter of context, Docker has a special base image called <code>scratch</code> which
+is empty–an application running on a scratch base image only has access to the
+kernel (at least to the extent that containers provide isolation).</p>
+            <a href=http://localhost:8000/posts/golang-docker-scratch-app.html>Read More</a>
+        </div>
     </div>
 </div>
         <div id="pagination">
-            <div class="pagination" id="pagination-prev">
-                <a href=http://localhost:8000/posts/5-myths-infra-as-code.html>&laquo;&nbsp;Previous</a>
-            </div>
-            <div class="pagination" id="pagination-next">
-                <a href=http://localhost:8000/posts/blog-infrastructure.html>Next&nbsp;&raquo;</a>
-            </div>
         </div>
     </div>
     <div id="footer">

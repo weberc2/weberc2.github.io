@@ -2,20 +2,17 @@
 <html>
 
 <head>
+<title>Working around ext4 on MacOS</title>
+    <meta charset="UTF-8">
     <meta name=viewport content='width=device-width'>
     <meta name="google-site-verification" content="cw0Nbm73FcLB9kSYvCUhc5q-6CrLFcgJQy0h_qzG0O8" />
     <link href='https://fonts.googleapis.com/css?family=Neuton|Merriweather|Inconsolata:400,700' rel='stylesheet'
         type='text/css'>
-    <link rel="stylesheet" type="text/css" href="https://weberc2.github.io/resources/style.css" />
-    <link
-        rel="alternate"
-        type="application/atom+xml"
-        title="Craig Weber"
-        href="https://weberc2.github.io/feed.atom"
-    >
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/static/style.css">
+    <link rel="alternate" type="application/atom+xml" title="Craig Weber" href="http://localhost:8000/feed.atom">
     <script>
         function submitAnalytics() {
-            const analyticsUrl = "https:\/\/azd7mnx3pk.execute-api.us-east-2.amazonaws.com";
+            const analyticsUrl = "https://azd7mnx3pk.execute-api.us-east-2.amazonaws.com";
             var body = document.getElementById("body");
             var img = document.createElement("img");
             var qstring = [
@@ -28,60 +25,42 @@
             body.appendChild(img);
         }
     </script>
-    
-<title>Working around ext4 on MacOS</title>
-
 </head>
 
-<body onload=submitAnalytics()>
-    <h1 id="site-header">
-        <a id="site-title" href="https://weberc2.github.io/index.html">
-            Craig Weber
-        </a>
-    </h1>
+<body>
+    <h1 id="site-header"><a id="site-title" href="http://localhost:8000/index.html">Craig Weber</a></h1>
     <div id="page" class="center-column">
-        
-<div id="post">
-    <h2 id="post-title">Working around ext4 on MacOS</h2>
-    <div><span class="post-date">2021-01-23</span></div>
+<div class="post">
+    <h2 class="post-title">Working around ext4 on MacOS</h2>
+<div class="post-meta">
+    <span class="post-date">2021-01-23</span>
+    <span class="tag"><a href="http://localhost:8000/pages/macos/index.html">macos</a></span>
+    <span class="tag"><a href="http://localhost:8000/pages/ext4/index.html">ext4</a></span>
+</div>
     <div class="post-body">
-        
         <p>One of the maddening things about MacOS is that it lacks ext4 file system
 support. This is a bummer because I use ext4 on many of my external hard
 drives as well as boot volumes for various headless Linux machines. Once in a
 while, these boot drives become corrupted (due to user error) and I find myself
 wanting to mount the file system on another system to repair the error. Ideally
-I can just pop it in a SATA&lt;-&gt;USB adapter and mount it on my Mac, but alas&hellip;</p>
-
-<!-- more -->
-
+I can just pop it in a SATA&lt;-&gt;USB adapter and mount it on my Mac, but alas…</p><!-- more -->
 <p>There is a read-only ext4 FUSE driver for MacOS installable via Homebrew, but
-that&rsquo;s not going to help us repair a bad volume. I could install some virtual
+that’s not going to help us repair a bad volume. I could install some virtual
 machine manager, bootstrap a machine, figure out how to share the host USB
 devices, etc, but that seems like a lot of work. If I recall correctly, there
-are also paid ext4 FUSE drivers, but I&rsquo;m cheap.</p>
-
-<p>What <em>has</em> worked for me is connecting the disk to a Raspberry Pi via my
+are also paid ext4 FUSE drivers, but I’m cheap.</p><p>What <em>has</em> worked for me is connecting the disk to a Raspberry Pi via my
 SATA&lt;-&gt;USB adapter, SSHing onto the Pi from my MacBook, and mounting the drive
 that way. And in case of long-running processes (like reformatting the drive),
 to avoid the MacBook falling asleep or anything else that might drop the SSH
-session, we can use <code>nohup</code> to keep the process alive (e.g., <code>sudo nohup mkfs
--t ext4 /dev/sda1</code>).</p>
-
-<p>Of course, SSHing through a Raspberry Pi is only convenient if you have a
+session, we can use <code>nohup</code> to keep the process alive (e.g., <code>sudo nohup mkfs -t ext4 /dev/sda1</code>).</p><p>Of course, SSHing through a Raspberry Pi is only convenient if you have a
 Raspberry Pi up and running and configured for SSH already. For everyone else,
 Virtual Box is probably the way to go.</p>
-
     </div>
 </div>
-
         <div id="pagination">
-            
-            
             <div class="pagination" id="pagination-next">
-                <a href="https://weberc2.github.io/posts/changelog.html">Next&nbsp;&raquo;</a>
+                <a href=http://localhost:8000/posts/changelog.html>Next&nbsp;&raquo;</a>
             </div>
-            
         </div>
     </div>
     <div id="footer">
@@ -94,35 +73,21 @@ Virtual Box is probably the way to go.</p>
                     opinions are my own.
                 </p>
             </div>
-            
             <div class="footer-section">
                 <h4>Contact</h4>
                 <ul>
-                    
-                    <li>
-                        <a href="http://twitter.com/weberc2">
-                            Twitter
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="http://github.com/weberc2">
-                            Github
-                        </a>
-                    </li>
-                    
-                    <li><a href="https://weberc2.github.io/feed.atom">Atom Feed</a></li>
+                    <li><a href="https://twitter.com/weberc2">Twitter</a></li>
+                    <li><a href="https://github.com/weberc2">Github</a></li>
+                    <li><a href="http://localhost:8000/feed.atom">Atom Feed</a></li>
                 </ul>
             </div>
-            
-            
             <div class="footer-section">
                 <h4>Copyright</h4>
                 Craig Weber 2016
             </div>
-            
         </div>
     </div>
+
 </body>
 
-</html>
+</html> 

@@ -2,7 +2,8 @@
 <html>
 
 <head>
-<title>Kubernetes + Raspberry Pi Homelab: Introduction</title>
+<title>Craig Weber</title>
+
     <meta charset="UTF-8">
     <meta name=viewport content='width=device-width'>
     <meta name="google-site-verification" content="cw0Nbm73FcLB9kSYvCUhc5q-6CrLFcgJQy0h_qzG0O8" />
@@ -30,14 +31,45 @@
 <body>
     <h1 id="site-header"><a id="site-title" href="http://localhost:8000/index.html">Craig Weber</a></h1>
     <div id="page" class="center-column">
-<div class="post">
-    <h2 class="post-title">Kubernetes + Raspberry Pi Homelab: Introduction</h2>
+<div id="post-list">
+    <div class="post">
+        <h2 class="post-title"><a href=http://localhost:8000/posts/changelog.html>Changelog</a></h2>
+<div class="post-meta">
+    <span class="post-date">2021-01-16</span>
+    <span class="tag"><a href="http://localhost:8000/pages/homelab/index.html">homelab</a></span>
+</div>
+        <div class="post-body">
+            <p>I worked on this blog for several hours this weekend, releasing a new post,
+implementing a couple new features and fixing some bugs. Here are the
+highlights:</p><ul><li>Published the <a href="./homelab-part-i-hardware.md" title="">first entry</a> in my <a href="./homelab-intro.md" title="">Homelab</a> series</li><li>Fixed a bug on iPad that was causing a ~300% zoom</li><li>Implemented syndication (atom feed)</li><li>Fixed broken relative links in post snippets</li><li>Reduced coupling between markdown and site configuration</li></ul>
+            <a href=http://localhost:8000/posts/changelog.html>Read More</a>
+        </div>
+    </div>
+    <div class="post">
+        <h2 class="post-title"><a href=http://localhost:8000/posts/homelab-part-i-hardware.html>Homelab Part I: Hardware</a></h2>
+<div class="post-meta">
+    <span class="post-date">2021-01-14</span>
+    <span class="tag"><a href="http://localhost:8000/pages/homelab/index.html">homelab</a></span>
+</div>
+        <div class="post-body">
+            <p>For hardware, I settled on Raspberry Pi 4Bs. They support up to 8GB of RAM
+(enough power to run the k3s master nodes) and USB 3.0 for fast external SSD
+I/O. The only downside of the 4Bs is that they require more power than the 3Bs,
+and the same multiport USB power supplies that could support a 3B cluster
+couldn’t support a 4B cluster. To solve for this, I decided on PoE hats and a
+PoE switch. This halves the number of cables that need to be run to each Pi,
+which makes the Pi cluster that much more enjoyable and easy on the eyes.</p>
+            <a href=http://localhost:8000/posts/homelab-part-i-hardware.html>Read More</a>
+        </div>
+    </div>
+    <div class="post">
+        <h2 class="post-title"><a href=http://localhost:8000/posts/homelab-intro.html>Kubernetes + Raspberry Pi Homelab: Introduction</a></h2>
 <div class="post-meta">
     <span class="post-date">2021-01-03</span>
     <span class="tag"><a href="http://localhost:8000/pages/homelab/index.html">homelab</a></span>
 </div>
-    <div class="post-body">
-        <p>As I alluded to in my <a href="./k3s-tailscale.md" title="">last post</a>, I’ve finally decided to pull the trigger
+        <div class="post-body">
+            <p>As I alluded to in my <a href="./k3s-tailscale.md" title="">last post</a>, I’ve finally decided to pull the trigger
 and build my own homelab: a personal computing environment for playing around
 with new tools and approaches for developing or operating software, including
 software that is personally useful.</p><p>For my homelab, I want to build a Raspberry Pi Kubernetes cluster for hosting
@@ -50,15 +82,26 @@ bare metal which are mature, robust, and open source; in the meanwhile, this
 series will document my efforts to work around those limitations so that others
 can build their own personal cloud platform more easily (or at least know what
 they’re considering getting into!).</p><p>Next time, I’ll delve into the hardware I’m using for my cluster.</p><ul><li><a href="./homelab-part-i-hardware.md" title="">Part I: Hardware</a></li></ul>
+        </div>
+    </div>
+    <div class="post">
+        <h2 class="post-title"><a href=http://localhost:8000/posts/k3s-tailscale.html>K3s + Tailscale</a></h2>
+<div class="post-meta">
+    <span class="post-date">2020-12-30</span>
+    <span class="tag"><a href="http://localhost:8000/pages/homelab/index.html">homelab</a></span>
+</div>
+        <div class="post-body">
+            <p>I’ve recently been working on my Raspberry Pi Kubernetes cluster. I also use
+<a href="https://tailscale.com/" title="">Tailscale</a> for my home VPN (because it’s performant and absurdly easy to
+setup and configure). I wanted to run Kubernetes services on my VPN using
+private DNS names (e.g., <code>foo.local</code>) and addresses from the Tailscale address
+space (e.g., <code>100.*</code>) as opposed to the host network address space (e.g.,
+<code>192.168.*</code>).</p>
+            <a href=http://localhost:8000/posts/k3s-tailscale.html>Read More</a>
+        </div>
     </div>
 </div>
         <div id="pagination">
-            <div class="pagination" id="pagination-prev">
-                <a href=http://localhost:8000/posts/macos-force-rgb.html>&laquo;&nbsp;Previous</a>
-            </div>
-            <div class="pagination" id="pagination-next">
-                <a href=http://localhost:8000/posts/k3s-tailscale.html>Next&nbsp;&raquo;</a>
-            </div>
         </div>
     </div>
     <div id="footer">

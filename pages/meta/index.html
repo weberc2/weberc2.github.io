@@ -2,7 +2,8 @@
 <html>
 
 <head>
-<title>Blog infrastructure updates</title>
+<title>Craig Weber</title>
+
     <meta charset="UTF-8">
     <meta name=viewport content='width=device-width'>
     <meta name="google-site-verification" content="cw0Nbm73FcLB9kSYvCUhc5q-6CrLFcgJQy0h_qzG0O8" />
@@ -30,14 +31,15 @@
 <body>
     <h1 id="site-header"><a id="site-title" href="http://localhost:8000/index.html">Craig Weber</a></h1>
     <div id="page" class="center-column">
-<div class="post">
-    <h2 class="post-title">Blog infrastructure updates</h2>
+<div id="post-list">
+    <div class="post">
+        <h2 class="post-title"><a href=http://localhost:8000/posts/blog-infra-updates.html>Blog infrastructure updates</a></h2>
 <div class="post-meta">
     <span class="post-date">2020-03-28</span>
     <span class="tag"><a href="http://localhost:8000/pages/meta/index.html">meta</a></span>
 </div>
-    <div class="post-body">
-        <p>Another year, another blog update. BitBucket is deprecating their Mercurial
+        <div class="post-body">
+            <p>Another year, another blog update. BitBucket is deprecating their Mercurial
 support, and while I really do appreciate Mercurial, it’s just easier for me to
 keep everything in GitHub than trying to find another Mercurial provider. Also,
 GitHub seems to be improving at a pretty rapid pace. So voila, this blog is now
@@ -45,15 +47,25 @@ hosted on GitHub. This includes my pet static site generator, <a href="https://g
 is used to generate this site.</p><p>Further, my pet build tool <a href="https://github.com/weberc2/builder" title=""><code>builder</code></a> is sufficiently far along that I
 can use it to automate the building of this static site. <code>builder</code> is pretty
 cool so far. At some point I will write a dedicated post about it.</p>
+        </div>
+    </div>
+    <div class="post">
+        <h2 class="post-title"><a href=http://localhost:8000/posts/blog-infrastructure.html>New blog infrastructure</a></h2>
+<div class="post-meta">
+    <span class="post-date">2019-04-06</span>
+    <span class="tag"><a href="http://localhost:8000/pages/meta/index.html">meta</a></span>
+</div>
+        <div class="post-body">
+            <p>I <em>finally</em> got around to automating the publishing of this blog. It hasn’t
+been a high priority, since I only post a couple of times a year, but it’s
+always bothered me that something that is such an ideal candidate for
+automation hasn’t been automated. Anyway, I finally did it and I want to
+describe the setup in case it’s helpful for anyone looking to do the same.</p>
+            <a href=http://localhost:8000/posts/blog-infrastructure.html>Read More</a>
+        </div>
     </div>
 </div>
         <div id="pagination">
-            <div class="pagination" id="pagination-prev">
-                <a href=http://localhost:8000/posts/5-myths-infra-as-code.html>&laquo;&nbsp;Previous</a>
-            </div>
-            <div class="pagination" id="pagination-next">
-                <a href=http://localhost:8000/posts/blog-infrastructure.html>Next&nbsp;&raquo;</a>
-            </div>
         </div>
     </div>
     <div id="footer">

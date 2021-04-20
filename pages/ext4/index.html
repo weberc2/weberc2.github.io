@@ -2,7 +2,8 @@
 <html>
 
 <head>
-<title>Blog infrastructure updates</title>
+<title>Craig Weber</title>
+
     <meta charset="UTF-8">
     <meta name=viewport content='width=device-width'>
     <meta name="google-site-verification" content="cw0Nbm73FcLB9kSYvCUhc5q-6CrLFcgJQy0h_qzG0O8" />
@@ -30,30 +31,26 @@
 <body>
     <h1 id="site-header"><a id="site-title" href="http://localhost:8000/index.html">Craig Weber</a></h1>
     <div id="page" class="center-column">
-<div class="post">
-    <h2 class="post-title">Blog infrastructure updates</h2>
+<div id="post-list">
+    <div class="post">
+        <h2 class="post-title"><a href=http://localhost:8000/posts/working-around-ext4-on-macos.html>Working around ext4 on MacOS</a></h2>
 <div class="post-meta">
-    <span class="post-date">2020-03-28</span>
-    <span class="tag"><a href="http://localhost:8000/pages/meta/index.html">meta</a></span>
+    <span class="post-date">2021-01-23</span>
+    <span class="tag"><a href="http://localhost:8000/pages/macos/index.html">macos</a></span>
+    <span class="tag"><a href="http://localhost:8000/pages/ext4/index.html">ext4</a></span>
 </div>
-    <div class="post-body">
-        <p>Another year, another blog update. BitBucket is deprecating their Mercurial
-support, and while I really do appreciate Mercurial, it’s just easier for me to
-keep everything in GitHub than trying to find another Mercurial provider. Also,
-GitHub seems to be improving at a pretty rapid pace. So voila, this blog is now
-hosted on GitHub. This includes my pet static site generator, <a href="https://github.com/weberc2/neon" title=""><code>neon</code></a> which
-is used to generate this site.</p><p>Further, my pet build tool <a href="https://github.com/weberc2/builder" title=""><code>builder</code></a> is sufficiently far along that I
-can use it to automate the building of this static site. <code>builder</code> is pretty
-cool so far. At some point I will write a dedicated post about it.</p>
+        <div class="post-body">
+            <p>One of the maddening things about MacOS is that it lacks ext4 file system
+support. This is a bummer because I use ext4 on many of my external hard
+drives as well as boot volumes for various headless Linux machines. Once in a
+while, these boot drives become corrupted (due to user error) and I find myself
+wanting to mount the file system on another system to repair the error. Ideally
+I can just pop it in a SATA&lt;-&gt;USB adapter and mount it on my Mac, but alas…</p>
+            <a href=http://localhost:8000/posts/working-around-ext4-on-macos.html>Read More</a>
+        </div>
     </div>
 </div>
         <div id="pagination">
-            <div class="pagination" id="pagination-prev">
-                <a href=http://localhost:8000/posts/5-myths-infra-as-code.html>&laquo;&nbsp;Previous</a>
-            </div>
-            <div class="pagination" id="pagination-next">
-                <a href=http://localhost:8000/posts/blog-infrastructure.html>Next&nbsp;&raquo;</a>
-            </div>
         </div>
     </div>
     <div id="footer">
