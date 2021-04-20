@@ -8,8 +8,8 @@
     <meta name="google-site-verification" content="cw0Nbm73FcLB9kSYvCUhc5q-6CrLFcgJQy0h_qzG0O8" />
     <link href='https://fonts.googleapis.com/css?family=Neuton|Merriweather|Inconsolata:400,700' rel='stylesheet'
         type='text/css'>
-    <link rel="stylesheet" type="text/css" href="http://localhost:8000/static/style.css">
-    <link rel="alternate" type="application/atom+xml" title="Craig Weber" href="http://localhost:8000/feed.atom">
+    <link rel="stylesheet" type="text/css" href="https://weberc2.github.io/static/style.css">
+    <link rel="alternate" type="application/atom+xml" title="Craig Weber" href="https://weberc2.github.io/feed.atom">
     <script>
         function submitAnalytics() {
             const analyticsUrl = "https://azd7mnx3pk.execute-api.us-east-2.amazonaws.com";
@@ -28,20 +28,20 @@
 </head>
 
 <body>
-    <h1 id="site-header"><a id="site-title" href="http://localhost:8000/index.html">Craig Weber</a></h1>
+    <h1 id="site-header"><a id="site-title" href="https://weberc2.github.io/index.html">Craig Weber</a></h1>
     <div id="page" class="center-column">
 <div class="post">
     <h2 class="post-title">Benchmarking Go and Python</h2>
 <div class="post-meta">
     <span class="post-date">2016-02-06</span>
-    <span class="tag"><a href="http://localhost:8000/pages/python/index.html">python</a></span>
-    <span class="tag"><a href="http://localhost:8000/pages/golang/index.html">golang</a></span>
+    <span class="tag"><a href="https://weberc2.github.io/pages/python/index.html">python</a></span>
+    <span class="tag"><a href="https://weberc2.github.io/pages/golang/index.html">golang</a></span>
 </div>
     <div class="post-body">
         <p>Sometimes I’m curious about the performance of different languages. At work, I
 usually write Python, but I often find tasks that are inherently parallelizable
 and could thus benefit from parallel execution. Unfortunately, Python is
-notoriously difficult to parallelize<sup class="footnote-reference"><a href="http://localhost:8000/posts/benchmarking-go-and-python.html#a">a</a></sup>. In one case, we needed to validate
+notoriously difficult to parallelize<sup class="footnote-reference"><a href="https://weberc2.github.io/posts/benchmarking-go-and-python.html#a">a</a></sup>. In one case, we needed to validate
 that a table of values of a particular type could be convertible into a values
 of a different type based on some known set of conversion rules. Since Go is a
 great language for writing concurrent programs (and executing them in
@@ -83,7 +83,7 @@ etc). Reading from memory is much less variable.</p><p>In Python, the code looks
 </code></pre><p>I also created a simple program that deterministically generates pseudo-random
 integer data in 2D CSV format and writes it to stdout:</p><pre><code class="language-bash">$ go run csvgen.go
 USAGE: csvgen &lt;col-count&gt; &lt;row-count&gt;
-</code></pre><p>This lets me pipe data into the Go and Python versions, like so<sup class="footnote-reference"><a href="http://localhost:8000/posts/benchmarking-go-and-python.html#b">b</a></sup>:</p><pre><code class="language-bash"># Sequential Python; 10,000 rows, 1,000 columns
+</code></pre><p>This lets me pipe data into the Go and Python versions, like so<sup class="footnote-reference"><a href="https://weberc2.github.io/posts/benchmarking-go-and-python.html#b">b</a></sup>:</p><pre><code class="language-bash"># Sequential Python; 10,000 rows, 1,000 columns
 $ go run csvgen.go 1000 10000 | python3 sequential.py
 Beginning validation...
 Validated 10000 rows of 1000 cells in 0:00:02.990360
@@ -175,10 +175,10 @@ so the I/O wasn’t included in the benchmarks. </p></div>
 </div>
         <div id="pagination">
             <div class="pagination" id="pagination-prev">
-                <a href=http://localhost:8000/posts/golang-interfaces-and-nil.html>&laquo;&nbsp;Previous</a>
+                <a href=https://weberc2.github.io/posts/golang-interfaces-and-nil.html>&laquo;&nbsp;Previous</a>
             </div>
             <div class="pagination" id="pagination-next">
-                <a href=http://localhost:8000/posts/installing-go-on-linux-and-osx.html>Next&nbsp;&raquo;</a>
+                <a href=https://weberc2.github.io/posts/installing-go-on-linux-and-osx.html>Next&nbsp;&raquo;</a>
             </div>
         </div>
     </div>
@@ -197,7 +197,7 @@ so the I/O wasn’t included in the benchmarks. </p></div>
                 <ul>
                     <li><a href="https://twitter.com/weberc2">Twitter</a></li>
                     <li><a href="https://github.com/weberc2">Github</a></li>
-                    <li><a href="http://localhost:8000/feed.atom">Atom Feed</a></li>
+                    <li><a href="https://weberc2.github.io/feed.atom">Atom Feed</a></li>
                 </ul>
             </div>
             <div class="footer-section">
